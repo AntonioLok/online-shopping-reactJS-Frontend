@@ -1,0 +1,12 @@
+@import '../variables';
+
+.nav-header {
+  text-align: center;
+
+  > a {
+    color: $black;
+    font-size: $font-medium;
+    margin-left: $margin-large;
+    margin-right: $margin-large;
+  }
+}
