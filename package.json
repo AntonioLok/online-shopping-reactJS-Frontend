@@ -4,7 +4,8 @@
   "description": "--",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development --open",
+    "start-webapp": "webpack-dev-server --mode development --open",
+    "start-server": "node server",
     "build": "webpack --mode production",
     "eslint": "gulp eslint",
     "sass-lint": "gulp sass-lint",

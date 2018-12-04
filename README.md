@@ -9,10 +9,10 @@
 * install dependences: `npm i`
 
 ## Development
-To start the app, simply run `npm start`
+To start the app, simply run `npm run start-webapp`
 The app should run at `localhost:8080`
 
-To start the server, simply run `node server`. 
+To start the server, simply run `npm run start-server`. 
 The server should run at `localhost:8000`
 
 ### pre-commit

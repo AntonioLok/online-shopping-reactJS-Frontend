@@ -5,7 +5,7 @@ const http = require('http');
 const app = express();
 
 // API file for interacting
-const api = require('./server/routes/api');
+const api = require('./routes/api');
 
 // Allow cors
 app.use((req, res, next) => {
