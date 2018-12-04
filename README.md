@@ -12,6 +12,9 @@
 To start the app, simply run `npm start`
 The app should run at `localhost:8080`
 
+To start the server, simply run `node server`. 
+The server should run at `localhost:8000`
+
 ### pre-commit
 Before each commit, only code quality (eslint) and sass-lint checks will be made. 
 The following command will be run:
