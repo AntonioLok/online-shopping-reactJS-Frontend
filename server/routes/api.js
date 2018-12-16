@@ -1,6 +1,4 @@
 const express = require('express');
-// const bodyParser = require('body-parser');
-// const ObjectID = require('mongodb').ObjectID;
 const mongoose = require('mongoose');
 const Product = require('../models/product');
 

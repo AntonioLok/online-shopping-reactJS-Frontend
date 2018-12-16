@@ -1,12 +1,17 @@
 const mongoose = require('mongoose');
 
 const productSchema = mongoose.Schema({
-  name: String,
-  price: Number,
-  section: String, // men, women, babies, etc.
-  type: String, // jacket, undies, suits, etc.
-  img: String,
-  sizeAvailable: Array,
+  name: { type: String, required: true },
+  price: { type: Number, required: true },
+  section: { type: String, enum: ['Men', 'Women', 'Kids', 'Baby'], required: true },
+  type: {
+    type: String,
+    enum: ['Shirts', 'Jeans', 'Pants', 'Jackets & Coats', 'Dresses', 'Knitwear', 'Tops',
+      'Skirts', 'Special', 'Newborn', 'Toddler', 'Socks & Accessories'],
+    required: true,
+  },
+  img: { type: String, required: true },
+  sizeAvailable: { type: Array, required: true },
 });
 
 productSchema.statics.getProducts = (callback) => {
