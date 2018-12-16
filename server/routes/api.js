@@ -15,10 +15,6 @@ dbconnection.once('open', () => {
   console.log('We are connected');
 });
 
-router.get('/test', (req, res) => {
-  res.send({ test: 'test' });
-});
-
 // Get products
 router.get('/products', (req, res) => {
   Product.getProducts((err, products) => {
