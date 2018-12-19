@@ -1,17 +1,24 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import '../stylesheets/app.scss';
+import { Router } from 'react-router';
+import { Switch, Route } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import NavMenu from './common/nav-menu';
 import NavHeader from './common/nav-header';
+import Product from './product';
 import Home from './home';
 
+import '../stylesheets/app.scss';
+
+const history = createHistory();
+
 const App = () => (
-  <Router>
+  <Router history={history}>
     <div className="app-container">
       <NavMenu />
-      <NavHeader />
+      <NavHeader history={history} />
       <Switch>
-        <Route path="/home" component={Home} />
+        <Route exact path="/home" component={Home} />
+        <Route exact path="/:section/:type" component={Product} />
       </Switch>
     </div>
   </Router>

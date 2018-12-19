@@ -1,12 +1,14 @@
 @import '../variables';
 
 .nav-header {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 
-  > a {
-    color: $black;
-    font-size: $font-medium;
-    margin-left: $margin-large;
-    margin-right: $margin-large;
+  .btn-group-nav-header {
+    width: 100px;
+
+    .dropdown-menu {
+      margin-top: 0 !important; // remove the gap so it doesn't close
+    }
   }
 }

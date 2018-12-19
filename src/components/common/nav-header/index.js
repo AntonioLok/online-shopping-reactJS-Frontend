@@ -1,17 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import HEADERS from '../../../constants/index';
+import PropTypes from 'prop-types';
+import RenderNavHeaders from './render-nav-headers';
+import { SECTIONS } from '../../../constants/index';
 
-const renderNavHeaders = navHeader => (
-  <Link to={`./${navHeader}`} key={navHeader}>
-    {navHeader}
-  </Link>
-);
+const NavHeader = (props) => {
+  const { history } = props;
 
-const NavHeader = () => (
-  <div className="nav-header">
-    {HEADERS.map(navHeader => renderNavHeaders(navHeader))}
-  </div>
-);
+  return (
+    <div className="nav-header">
+      {SECTIONS.map(
+        section => <RenderNavHeaders section={section} key={section} history={history} />,
+      )}
+    </div>
+  );
+};
+
+NavHeader.propTypes = {
+  history: PropTypes.object.isRequired,
+};
 
 export default NavHeader;

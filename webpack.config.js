@@ -1,4 +1,5 @@
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path');
 
 const htmlWebpackPlugin = new HtmlWebPackPlugin({
   template: './src/index.html',
@@ -6,6 +7,17 @@ const htmlWebpackPlugin = new HtmlWebPackPlugin({
 });
 
 module.exports = {
+  entry: {
+    app: ['./src/index.js'],
+  },
+  output: {
+    path: path.join(__dirname, '/build/www'),
+    filename: 'scripts/[name].[hash].js',
+    publicPath: '/',
+  },
+  devServer: {
+    historyApiFallback: true,
+  },
   module: {
     rules: [
       {
