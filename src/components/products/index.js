@@ -8,7 +8,7 @@ import ProductList from './productList';
 import { TYPES } from '../../constants/index';
 import { fetchAllProducts } from '../../store/actions/products';
 
-class Product extends React.Component {
+class Products extends React.Component {
   componentDidMount() {
     const { fetchProducts, match } = this.props;
     const { section, type } = match.params;
@@ -39,7 +39,7 @@ class Product extends React.Component {
     const { section } = match.params;
 
     return (
-      <div className="product">
+      <div className="products">
         <Grid>
           <Row>
             <Col xs={12} md={3}>
@@ -65,7 +65,7 @@ const mapDispatchToProps = dispatch => ({
   },
 });
 
-Product.propTypes = {
+Products.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   fetchProducts: PropTypes.func.isRequired,
@@ -75,4 +75,4 @@ Product.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Product);
+)(Products);
