@@ -14,8 +14,9 @@ dbconnection.once('open', () => {
 });
 
 // Get products
-router.get('/products', (req, res) => {
-  Product.getProducts((err, products) => {
+router.get('/products/:section/:type', (req, res) => {
+  const { section, type } = req.params;
+  Product.getProducts(section, type, (err, products) => {
     if (err) {
       res.json({ success: false, data: [] });
     } else {
