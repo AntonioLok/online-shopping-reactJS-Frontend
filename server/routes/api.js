@@ -13,6 +13,19 @@ dbconnection.once('open', () => {
   console.log('We are connected');
 });
 
+// Get product
+router.get('/products/:id', (req, res) => {
+  const { id } = req.params;
+  Product.getProduct(id, (err, product) => {
+    if (err) {
+      res.json({ success: false, data: [] });
+    } else {
+      res.json({ success: true, data: product[0] });
+    }
+  });
+});
+
+
 // Get products
 router.get('/products/:section/:type', (req, res) => {
   const { section, type } = req.params;

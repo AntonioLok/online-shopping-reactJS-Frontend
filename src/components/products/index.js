@@ -4,9 +4,9 @@ import {
 } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import ProductList from './productList';
+import ProductList from './product-list';
 import { TYPES } from '../../constants/index';
-import { fetchAllProducts } from '../../store/actions/products';
+import { fetchProductsAPI } from '../../store/actions/products';
 
 class Products extends React.Component {
   componentDidMount() {
@@ -28,7 +28,7 @@ class Products extends React.Component {
     const { section } = match.params;
 
     return (
-      <MenuItem key={type} onClick={() => history.push(`/${section}/${type}`)}>
+      <MenuItem key={type} onClick={() => history.push(`/products/${section}/${type}`)}>
         {type}
       </MenuItem>
     );
@@ -61,7 +61,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   fetchProducts: (section, type) => {
-    dispatch(fetchAllProducts(section, type));
+    dispatch(fetchProductsAPI(section, type));
   },
 });
 

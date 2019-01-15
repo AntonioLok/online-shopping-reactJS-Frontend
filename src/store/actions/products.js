@@ -6,7 +6,7 @@ export const fetchProducts = products => ({
   products,
 });
 
-export const fetchAllProducts = (section, type) => dispatch => axios({
+export const fetchProductsAPI = (section, type) => dispatch => axios({
   url: `http://localhost:8000/api/products/${section}/${type}`,
   method: 'get',
 })

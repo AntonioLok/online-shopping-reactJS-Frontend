@@ -27,7 +27,7 @@ class RenderNavHeaders extends React.Component {
 
   handleSelect(eventKey) {
     const { history, section } = this.props;
-    history.push(`/${section}/${eventKey}`);
+    history.push(`/products/${section}/${eventKey}`);
   }
 
   render() {
