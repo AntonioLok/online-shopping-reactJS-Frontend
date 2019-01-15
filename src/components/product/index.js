@@ -25,10 +25,10 @@ class Product extends React.Component {
 
   handleSubmit(fields) {
     const { product, history } = this.props;
-    const { selectedSize } = fields;
     const { isLoggedIn } = this.state;
     if (!isLoggedIn) {
-      const cartProduct = Object.assign(product, { selectedSize }, { amount: 1 });
+      const cartProduct = Object.assign(product, fields, { amount: 1 });
+      console.log(cartProduct);
       const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
       cart.push(cartProduct);
       localStorage.setItem('cart', JSON.stringify(cart));
