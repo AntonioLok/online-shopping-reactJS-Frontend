@@ -14,6 +14,15 @@ const productSchema = mongoose.Schema({
   sizeAvailable: { type: Array, required: true },
 });
 
+productSchema.statics.getProduct = (id, callback) => {
+  productModel.find({ _id: id }, (err, product) => {
+    if (err) {
+      return callback(err);
+    }
+    return callback(null, product);
+  });
+};
+
 productSchema.statics.getProducts = (section, type, callback) => {
   productModel.find({ section, type }, (err, products) => {
     if (err) {

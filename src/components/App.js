@@ -5,6 +5,7 @@ import createHistory from 'history/createBrowserHistory';
 import NavMenu from './common/nav-menu';
 import NavHeader from './common/nav-header';
 import Products from './products';
+import Product from './product';
 import Home from './home';
 
 import '../stylesheets/app.scss';
@@ -18,7 +19,8 @@ const App = () => (
       <NavHeader history={history} />
       <Switch>
         <Route exact path="/home" component={Home} />
-        <Route exact path="/:section/:type" component={Products} />
+        <Route exact path="/products/:section/:type" component={Products} />
+        <Route exact path="/product/:id" component={Product} />
       </Switch>
     </div>
   </Router>

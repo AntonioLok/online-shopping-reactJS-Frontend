@@ -4,11 +4,17 @@ import { Col } from 'react-bootstrap';
 
 class ProductList extends React.Component {
   renderProducts(product) {
-    const { name, price, img } = product;
+    const {
+      name,
+      price,
+      img,
+      _id,
+    } = product;
+
     const { history } = this.props;
     return (
       <Col xs={6} md={4} key={img} className="single-product">
-        <div className="image" onClick={() => history.push('/placeholderfornow')} role="presentation">
+        <div className="image" onClick={() => history.push(`/product/${_id}`)} role="presentation">
           <img alt={name} src={img} />
         </div>
         <div className="name">{name}</div>

@@ -1,0 +1,32 @@
+.product {
+  img {
+    height: 550px;
+    width: 100%;
+  }
+
+  .label-field {
+    font-size: $font-large;
+  }
+
+  form {
+    margin-top: $margin-xxxlarge;
+
+    select {
+      background-color: $white;
+      height: $standard-form-element-height;
+      width: 100%;
+    }
+
+    .btn {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      margin-top: $margin-large;
+      width: 100%;
+
+      .btn-caption {
+        font-size: $font-small;
+      }
+    }
+  }
+}
