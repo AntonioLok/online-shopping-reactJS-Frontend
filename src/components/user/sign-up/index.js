@@ -30,9 +30,6 @@ class SignUp extends React.Component {
         case 400:
           message = 'One or more fields appears to be invalid. Please check the form and try again.';
           break;
-        case 409:
-          message = 'User already exists. Please check the username or email and try again.';
-          break;
         default:
           message = 'An unknown error has occurred. Please try again.';
           break;
