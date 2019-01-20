@@ -1,11 +1,10 @@
-/* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
-import SelectInput from '../common/form/select-input';
+import Button from '../common/form/button';
+import SelectInput from '../common/form/input-fields/select-input';
 
-class AddToCartForm extends React.Component {
+class AddToCartForm extends React.PureComponent {
   render() {
     const { product, handleSubmit } = this.props;
     const { sizeAvailable } = product;
@@ -14,12 +13,10 @@ class AddToCartForm extends React.Component {
         <SelectInput
           name="selectSize"
           options={sizeAvailable}
-          validate={['isRequired']}
+          validate={['required']}
+          placeholder="Please select a size"
         />
-        <Button type="submit">
-          <i className="material-icons">shopping_basket</i>
-          <span className="btn-caption">Add</span>
-        </Button>
+        <Button icon="shopping_basket" caption="Add product" type="submit" />
       </form>
     );
   }

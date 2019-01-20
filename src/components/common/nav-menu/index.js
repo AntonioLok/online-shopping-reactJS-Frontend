@@ -11,12 +11,8 @@ const NavMenu = () => (
         </Navbar.Brand>
       </Navbar.Header>
       <Nav pullRight>
-        <NavItem>
-          Register
-        </NavItem>
-        <NavItem>
-          Login
-        </NavItem>
+        <NavItem href="/sign-up">Sign Up</NavItem>
+        <NavItem href="/login">Login</NavItem>
       </Nav>
     </Navbar>
   </div>

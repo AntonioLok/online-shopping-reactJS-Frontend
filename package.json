@@ -16,7 +16,9 @@
   "license": "ISC",
   "dependencies": {
     "axios": "0.18.0",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.18.3",
+    "classnames": "^2.2.6",
     "express": "4.16.4",
     "express-session": "1.15.6",
     "history": "4.7.2",
@@ -24,6 +26,7 @@
     "mongodb": "3.1.10",
     "mongoose": "5.3.14",
     "prop-types": "15.6.2",
+    "ramda": "0.26.1",
     "react": "16.2.0",
     "react-bootstrap": "0.32.4",
     "react-dom": "16.2.0",
@@ -31,7 +34,7 @@
     "react-router": "4.3.1",
     "react-router-dom": "4.3.1",
     "redux": "4.0.1",
-    "redux-form": "7.4.0",
+    "redux-form": "7.4.2",
     "redux-thunk": "2.3.0"
   },
   "devDependencies": {

@@ -37,7 +37,7 @@ class RenderNavHeaders extends React.Component {
     return (
       <ButtonToolbar>
         <DropdownButton
-          bsStyle="nav-header"
+          bsStyle="link"
           title={section}
           noCaret
           onMouseEnter={() => this.enterMenu()}

@@ -28,7 +28,6 @@ class Product extends React.Component {
     const { isLoggedIn } = this.state;
     if (!isLoggedIn) {
       const cartProduct = Object.assign(product, fields, { amount: 1 });
-      console.log(cartProduct);
       const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
       cart.push(cartProduct);
       localStorage.setItem('cart', JSON.stringify(cart));

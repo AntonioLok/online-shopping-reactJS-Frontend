@@ -1,0 +1,30 @@
+form {
+  margin-bottom: $margin-form;
+  margin-top: $margin-form;
+
+  .form-field {
+    margin-bottom: $margin-large;
+    margin-top: $margin-large;
+
+      input {
+        height: $standard-form-element-height;
+        width: 100%;
+      }
+  }
+
+  select {
+    background-color: $white;
+    height: $standard-form-element-height;
+    width: 100%;
+  }
+
+  button {
+    align-items: center;
+    border-color: $light-grey;
+    display: flex;
+    height: $standard-form-element-height;
+    justify-content: center;
+    margin-top: $margin-xxxlarge;
+    width: 100%;
+  }
+}
