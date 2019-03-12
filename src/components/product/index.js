@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Grid, Row, Col,
 } from 'react-bootstrap';
@@ -7,9 +7,9 @@ import { connect } from 'react-redux';
 import AddToCartForm from './add-to-cart-form';
 import { fetchProductAPI } from '../../store/actions/product';
 
-class Product extends React.Component {
-  constructor(props) {
-    super(props);
+class Product extends Component {
+  constructor() {
+    super();
     this.state = {
       isLoggedIn: false, // set to true by default for demo purposes
     };
@@ -24,7 +24,8 @@ class Product extends React.Component {
   }
 
   handleSubmit(fields) {
-    const { product, history } = this.props;
+    const { productState, history } = this.props;
+    const product = productState.data;
     const { isLoggedIn } = this.state;
     if (!isLoggedIn) {
       const cartProduct = Object.assign(product, fields, { amount: 1 });
@@ -37,13 +38,13 @@ class Product extends React.Component {
   }
 
   render() {
-    const { product } = this.props;
+    const { productState } = this.props;
+    const product = productState.data;
     const {
       img,
       name,
       price,
     } = product;
-
     let elem = null;
 
     if (Object.keys(product).length !== 0) {
@@ -67,7 +68,7 @@ class Product extends React.Component {
     }
 
     return (
-      <div className="product">
+      <div className="os--product">
         {elem}
       </div>
     );
@@ -75,7 +76,7 @@ class Product extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  product: state.product,
+  productState: state.product,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -88,7 +89,7 @@ Product.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
   fetchProduct: PropTypes.func.isRequired,
-  product: PropTypes.object.isRequired,
+  productState: PropTypes.object.isRequired,
 };
 
 export default connect(

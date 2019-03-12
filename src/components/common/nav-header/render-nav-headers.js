@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { TYPES } from '../../../constants/index';
@@ -7,9 +7,9 @@ const renderSections = section => (
   <MenuItem key={section} eventKey={section}>{section}</MenuItem>
 );
 
-class RenderNavHeaders extends React.Component {
-  constructor(props) {
-    super(props);
+class RenderNavHeaders extends Component {
+  constructor() {
+    super();
     this.state = {
       show: false,
     };

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
 import validations from '../validations';
@@ -22,7 +22,7 @@ const renderField = (fields) => {
   );
 };
 
-class SelectInput extends React.PureComponent {
+class SelectInput extends PureComponent {
   render() {
     const {
       name,

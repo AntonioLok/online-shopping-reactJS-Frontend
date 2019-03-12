@@ -7,7 +7,7 @@ const NavHeader = (props) => {
   const { history } = props;
 
   return (
-    <div className="nav-header">
+    <div className="os--nav-header">
       {SECTIONS.map(
         section => <RenderNavHeaders section={section} key={section} history={history} />,
       )}

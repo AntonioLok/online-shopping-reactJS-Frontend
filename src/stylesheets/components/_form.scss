@@ -1,30 +1,30 @@
 form {
-  margin-bottom: $margin-form;
-  margin-top: $margin-form;
+  margin-bottom: $margin-xxl-horizontal;
+  margin-top: $margin-xxl-horizontal;
 
   .form-field {
-    margin-bottom: $margin-large;
-    margin-top: $margin-large;
+    margin-bottom: $margin-lg-horizontal;
+    margin-top: $margin-lg-vertical;
 
       input {
-        height: $standard-form-element-height;
+        height: $height-lg-vertical;
         width: 100%;
       }
   }
 
   select {
-    background-color: $white;
-    height: $standard-form-element-height;
+    background-color: $os-white;
+    height: $height-lg-vertical;
     width: 100%;
   }
 
   button {
     align-items: center;
-    border-color: $light-grey;
+    border-color: $os-light-grey;
     display: flex;
-    height: $standard-form-element-height;
+    height: $height-lg-vertical;
     justify-content: center;
-    margin-top: $margin-xxxlarge;
+    margin-top: $margin-xl-horizontal;
     width: 100%;
   }
 }

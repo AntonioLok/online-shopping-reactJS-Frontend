@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Col } from 'react-bootstrap';
 
-class ProductList extends React.Component {
+class ProductList extends Component {
   renderProducts(product) {
     const {
       name,

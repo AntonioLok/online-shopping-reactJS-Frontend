@@ -6,3 +6,15 @@ export const TYPES = {
   Kids: ['Tops', 'Pants', 'Jackets & Coats', 'Accessories'],
   Baby: ['Special', 'Newborn', 'Toddler', 'Socks & Accessories'],
 };
+
+export const ROUTES = {
+  home: '/home',
+  register: '/register',
+  logIn: '/login',
+  products: '/products/:section/:type',
+  product: '/product/:id',
+};
+
+export const SUCCESS = 'SUCCESS';
+
+export const FAILURE = 'FAILURE';

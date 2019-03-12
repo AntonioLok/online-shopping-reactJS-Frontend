@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
-import asyncValidate from '../../common/form/asyncValidate';
+import asyncValidate from '../../common/form/email-exists';
 import Button from '../../common/form/button';
 import TextInput from '../../common/form/input-fields/text-input';
 
-class SignUpForm extends React.PureComponent {
+class RegisterForm extends PureComponent {
   render() {
     const { handleSubmit } = this.props;
     return (
@@ -28,12 +28,12 @@ class SignUpForm extends React.PureComponent {
   }
 }
 
-SignUpForm.propTypes = {
+RegisterForm.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
 };
 
 export default reduxForm({
-  form: 'SignUpForm',
+  form: 'RegisterForm',
   asyncValidate,
   asyncBlurFields: ['email'],
-})(SignUpForm);
+})(RegisterForm);

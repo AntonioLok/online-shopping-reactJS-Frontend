@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
 import Button from '../common/form/button';
 import SelectInput from '../common/form/input-fields/select-input';
 
-class AddToCartForm extends React.PureComponent {
+class AddToCartForm extends PureComponent {
   render() {
     const { product, handleSubmit } = this.props;
     const { sizeAvailable } = product;

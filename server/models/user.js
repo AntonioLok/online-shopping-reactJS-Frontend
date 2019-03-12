@@ -6,17 +6,12 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
 });
 
-userSchema.methods.generateHash = password => (
+userSchema.methods.generatePasswordHash = password => (
   bcrypt.hashSync(password, bcrypt.genSaltSync(8), null));
 
-userSchema.statics.getEmail = (userEmail, callback) => {
-  userModel.find({ username: userEmail }, (err, email) => {
-    if (err) {
-      return callback(err);
-    }
-    return callback(null, email);
-  });
-};
+userSchema.statics.getEmail = userEmail => userModel.find({ username: userEmail })
+  .exec()
+  .then(email => email);
 
 const userModel = mongoose.model('User', userSchema);
 

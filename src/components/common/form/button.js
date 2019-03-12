@@ -1,8 +1,8 @@
 /* eslint-disable react/button-has-type */
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-class Button extends React.PureComponent {
+class Button extends PureComponent {
   render() {
     const {
       icon,
