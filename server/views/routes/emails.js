@@ -7,11 +7,10 @@ router.get('/:email', async (req, res) => {
   try {
     const { email } = req.params;
     const userEmail = await User.findByEmail(email);
-
-    if (userEmail && userEmail.length === 0) {
-      responseHandler.handleSuccess(res, 200, { emailFound: false });
-    } else {
+    if (userEmail) {
       responseHandler.handleSuccess(res, 200, { emailFound: true });
+    } else {
+      responseHandler.handleSuccess(res, 200, { emailFound: false });
     }
   } catch (error) {
     responseHandler.handleError(res, 500);
