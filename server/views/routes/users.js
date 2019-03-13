@@ -4,9 +4,8 @@ const responseHandler = require('../../utils/response-handler');
 
 router.post('/register', async (req, res) => {
   try {
-    const { email } = req.body;
-
-    await registerUser(email.toLowerCase());
+    const { email, password } = req.body;
+    await registerUser(email.toLowerCase(), password);
     responseHandler.handleSuccess(res, 201);
   } catch (error) {
     responseHandler.handleError(res, 500);

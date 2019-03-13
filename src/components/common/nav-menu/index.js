@@ -3,7 +3,6 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../constants';
 
-// eslint-disable-next-line react/prefer-stateless-function
 class NavMenu extends PureComponent {
   render() {
     const {

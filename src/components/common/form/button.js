@@ -18,10 +18,6 @@ class Button extends PureComponent {
   }
 }
 
-Button.defaultProps = {
-  icon: null,
-};
-
 Button.propTypes = {
   type: PropTypes.oneOf(['submit', 'reset', 'button']).isRequired,
   icon: PropTypes.string,

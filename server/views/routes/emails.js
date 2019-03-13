@@ -6,7 +6,7 @@ const responseHandler = require('../../utils/response-handler');
 router.get('/:email', async (req, res) => {
   try {
     const { email } = req.params;
-    const userEmail = await User.getEmail(email);
+    const userEmail = await User.findByEmail(email);
 
     if (userEmail && userEmail.length === 0) {
       responseHandler.handleSuccess(res, 200, { emailFound: false });

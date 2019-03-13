@@ -1,15 +1,19 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-nodejs');
+const bcrypt = require('bcryptjs');
 
 const userSchema = mongoose.Schema({
   username: { type: String, required: true, index: { unique: true, dropDups: true } },
   password: { type: String, required: true },
 });
 
-userSchema.methods.generatePasswordHash = password => (
-  bcrypt.hashSync(password, bcrypt.genSaltSync(8), null));
+userSchema.statics.generatePasswordHash = async (password) => {
+  const salt = await bcrypt.genSalt(10);
+  const hashedPassword = await bcrypt.hash(password, salt);
 
-userSchema.statics.getEmail = userEmail => userModel.find({ username: userEmail })
+  return hashedPassword;
+};
+
+userSchema.statics.findByEmail = userEmail => userModel.findOne({ username: userEmail })
   .exec()
   .then(email => email);
 
