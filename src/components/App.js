@@ -6,11 +6,15 @@ import NavMenu from './common/nav-menu';
 import NavHeader from './common/nav-header';
 import Products from './products';
 import Product from './product';
+import Register from './user/register';
 import Home from './home';
-
+import { ROUTES } from '../constants';
 import '../stylesheets/app.scss';
 
 const history = createHistory();
+const {
+  home, register, products, product,
+} = ROUTES;
 
 const App = () => (
   <Router history={history}>
@@ -18,9 +22,10 @@ const App = () => (
       <NavMenu />
       <NavHeader history={history} />
       <Switch>
-        <Route exact path="/home" component={Home} />
-        <Route exact path="/products/:section/:type" component={Products} />
-        <Route exact path="/product/:id" component={Product} />
+        <Route exact path={home} component={Home} />
+        <Route exact path={products} component={Products} />
+        <Route exact path={product} component={Product} />
+        <Route exact path={register} component={Register} />
       </Switch>
     </div>
   </Router>

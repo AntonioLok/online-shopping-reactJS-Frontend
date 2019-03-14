@@ -1,11 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
+const mongoose = require('mongoose');
+const users = require('./views/routes/users');
+const products = require('./views/routes/products');
+const emails = require('./views/routes/emails');
 
 const app = express();
 
-// API file for interacting
-const api = require('./routes/api');
+mongoose.connect('mongodb://user123:user123@ds135704.mlab.com:35704/shopping_site', { useNewUrlParser: true });
+const dbconnection = mongoose.connection;
+
+// Handle mongo error
+dbconnection.on('error', console.error.bind(console, 'connection error:'));
+dbconnection.once('open', () => {
+  console.log('We are connected');
+});
 
 // Allow cors
 app.use((req, res, next) => {
@@ -19,8 +29,9 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// API location
-app.use('/api', api);
+app.use('/users', users);
+app.use('/products', products);
+app.use('/emails', emails);
 
 // Set Port
 const port = process.env.PORT || '8000';

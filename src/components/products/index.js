@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   Grid, Row, Col, MenuItem,
 } from 'react-bootstrap';
@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 import ProductList from './product-list';
 import { TYPES } from '../../constants/index';
 import { fetchProductsAPI } from '../../store/actions/products';
+// import { getDataFromState } from '../../utils';
 
-class Products extends React.Component {
+class Products extends Component {
   componentDidMount() {
     const { fetchProducts, match } = this.props;
     const { section, type } = match.params;
@@ -35,11 +36,11 @@ class Products extends React.Component {
   }
 
   render() {
-    const { match, products, history } = this.props;
+    const { match, productsState, history } = this.props;
     const { section } = match.params;
-
+    const products = productsState.data;
     return (
-      <div className="products">
+      <div className="os--products">
         <Grid>
           <Row>
             <Col xs={12} md={3}>
@@ -56,7 +57,7 @@ class Products extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products,
+  productsState: state.products,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -69,7 +70,7 @@ Products.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
   fetchProducts: PropTypes.func.isRequired,
-  products: PropTypes.array.isRequired,
+  productsState: PropTypes.object.isRequired,
 };
 
 export default connect(

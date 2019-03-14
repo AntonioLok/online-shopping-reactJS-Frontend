@@ -1,29 +1,28 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { Field } from 'redux-form';
 import PropTypes from 'prop-types';
-import validations from './validations';
+import validations from '../validations';
 
 const renderField = (fields) => {
   const {
-    options,
-    meta,
+    meta: { submitFailed, error },
     placeholder,
     input,
+    options,
   } = fields;
-  const { error } = meta;
+  const { name } = input;
   return (
-    <div className={input.name}>
+    <div className={`form-field wrapper-field-${name}`}>
       <select {...input}>
-        <option key="default" defaultValue value="">{placeholder}</option>
+        <option defaultValue key="default" value="default">{placeholder}</option>
         {options.map(size => <option value={size} key={size}>{size}</option>)}
       </select>
-      {error && <div className="text-danger">{error}</div>}
+      {submitFailed && error && <div className="text-danger">{error}</div>}
     </div>
   );
 };
 
-// eslint-disable-next-line react/prefer-stateless-function
-class SelectInput extends React.Component {
+class SelectInput extends PureComponent {
   render() {
     const {
       name,

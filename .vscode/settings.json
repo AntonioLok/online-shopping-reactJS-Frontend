@@ -1,3 +1,22 @@
 {
-  "git.ignoreLimitWarning": true
+  "files.autoSave": "off",
+   "eslint.options": {
+       "extensions": [
+           ".js",
+           ".vue"
+       ]
+   },
+   "eslint.autoFixOnSave": true,
+   "eslint.validate": [
+       {
+           "language": "javascript",
+           "autoFix": true,
+       },
+       {
+           "language": "vue",
+           "autoFix": true
+       },
+       "javascriptreact",
+       "vue-html"
+   ],
 }

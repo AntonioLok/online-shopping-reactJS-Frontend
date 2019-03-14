@@ -9,6 +9,10 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "react/forbid-prop-types": 0,
-    "no-use-before-define": ["error", { "variables": false }]
+    "no-use-before-define": ["error", { "variables": false }],
+    "react/prefer-stateless-function": [0, {
+      "ignorePureComponents": true
+    }],
+    "react/require-default-props": 0
   }
 }

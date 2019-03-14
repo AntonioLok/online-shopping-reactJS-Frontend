@@ -1,9 +1,9 @@
-.products {
+.os--products {
   ul {
     list-style-type: none;
 
     li {
-      margin-bottom: $margin-large;
+      margin-bottom: $margin-lg-horizontal;
 
       a {
         color: inherit;
@@ -13,7 +13,7 @@
 
   .product-list {
     .single-product {
-      margin-bottom: $margin-xxlarge;
+      margin-bottom: $margin-xl-horizontal;
       text-align: center;
 
       img {
