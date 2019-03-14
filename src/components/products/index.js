@@ -7,7 +7,6 @@ import { connect } from 'react-redux';
 import ProductList from './product-list';
 import { TYPES } from '../../constants/index';
 import { fetchProductsAPI } from '../../store/actions/products';
-// import { getDataFromState } from '../../utils';
 
 class Products extends Component {
   componentDidMount() {
