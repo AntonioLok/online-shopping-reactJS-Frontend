@@ -1,11 +1,12 @@
 const router = require('express').Router();
-const Product = require('../../models/product');
+const getProduct = require('../../controllers/product/get-product');
+const getProducts = require('../../controllers/product/get-products');
 const responseHandler = require('../../utils/response-handler');
 
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const product = await Product.getProduct(id);
+    const product = await getProduct(id);
 
     responseHandler.handleSuccess(res, 200, product[0]);
   } catch (error) {
@@ -13,11 +14,10 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// Get products
 router.get('/:section/:type', async (req, res) => {
   try {
     const { section, type } = req.params;
-    const products = await Product.getProducts(section, type);
+    const products = await getProducts(section, type);
 
     responseHandler.handleSuccess(res, 200, products);
   } catch (error) {
