@@ -4,7 +4,6 @@ const http = require('http');
 const mongoose = require('mongoose');
 const users = require('./views/routes/users');
 const products = require('./views/routes/products');
-const emails = require('./views/routes/emails');
 
 const app = express();
 
@@ -31,7 +30,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/users', users);
 app.use('/products', products);
-app.use('/emails', emails);
 
 // Set Port
 const port = process.env.PORT || '8000';
