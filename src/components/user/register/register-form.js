@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { reduxForm } from 'redux-form';
-import asyncValidate from '../../common/form/email-exists';
+import asyncValidate from '../../../utils/email-exists';
 import Button from '../../common/form/button';
 import TextInput from '../../common/form/input-fields/text-input';
 

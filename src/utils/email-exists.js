@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_BASE_URL } from '../../../settings';
+import { API_BASE_URL } from '../settings';
 
 const messageError = { email: 'That username is taken' };
 const asyncValidate = async (value) => {
