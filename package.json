@@ -10,6 +10,10 @@
     "sass-lint": "gulp sass-lint",
     "precommit": "npm run eslint && npm run sass-lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AntonioLok/online-shopping-reactJS-Frontend"
+  },
   "keywords": [],
   "author": "Antonio Lok Chan",
   "license": "ISC",
@@ -53,7 +57,7 @@
     "style-loader": "0.23.1",
     "webpack": "4.19.1",
     "webpack-cli": "2.1.5",
-    "webpack-dev-server": "3.1.0"
+    "webpack-dev-server": "3.3.1"
   },
   "engines": {
     "node": "10.x"
