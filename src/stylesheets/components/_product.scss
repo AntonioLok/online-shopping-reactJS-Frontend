@@ -1,7 +1,8 @@
+$product-image-height: 550px;
+
 .os--product {
   img {
-    height: 550px;
-    width: 100%;
+    @include shape (100%, $product-image-height);
   }
 
   .label-field {

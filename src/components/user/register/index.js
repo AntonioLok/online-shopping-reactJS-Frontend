@@ -31,8 +31,15 @@ class Register extends Component {
     const { registerState } = this.props;
     const { statusCode } = registerState;
     const { logIn } = ROUTES;
-
     const isRegisterSuccessful = statusCode === 201;
+    const registerFormProps = {
+      title: 'Register',
+      onSubmit: this.handleSubmit,
+      inputFields: [
+        { textInput: { name: 'email' } },
+        { textInput: { name: 'password' } },
+      ],
+    };
 
     if (isRegisterSuccessful) {
       return <Redirect to={logIn} />;
@@ -43,8 +50,8 @@ class Register extends Component {
         <Grid>
           <Row>
             <Col xs={10} xsOffset={1} sm={10} smOffset={1} md={6} mdOffset={3}>
-              {!isRegisterSuccessful ? this.renderFormError() : null}
-              <RegisterForm onSubmit={this.handleSubmit} />
+              {isRegisterSuccessful && this.renderFormError()}
+              <RegisterForm {...registerFormProps} />
             </Col>
           </Row>
         </Grid>
