@@ -1,0 +1,17 @@
+@mixin flex-center-layout {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+@mixin font-style($size: null, $weight: null, $line-height: null, $color: null) {
+  color: $color;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $line-height;
+}
+
+@mixin shape($width, $height: width) {
+  height: $height;
+  width: $width;
+}
