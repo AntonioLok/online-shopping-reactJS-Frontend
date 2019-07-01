@@ -40,11 +40,30 @@ class Product extends Component {
   render() {
     const { productState } = this.props;
     const product = productState.data;
+    const { sizeAvailable } = product;
     const {
       img,
       name,
       price,
     } = product;
+    const addToCartFormProps = {
+      onSubmit: this.handleSubmit,
+      submitButtonProps: {
+        icon: 'shopping_basket',
+        caption: 'Add product',
+      },
+      inputFields: [
+        {
+          selectInput: {
+            name: 'selectSize',
+            options: sizeAvailable,
+            validate: ['required'],
+            placeholder: 'Please select a size',
+          },
+        },
+      ],
+    };
+
     let elem = null;
 
     if (Object.keys(product).length !== 0) {
@@ -56,11 +75,8 @@ class Product extends Component {
             </Col>
             <Col xs={10} xsOffset={1} sm={5} md={6} smOffset={1} mdOffset={1}>
               <div className="label-field">{name}</div>
-              <div className="label-field">
-                $
-                {price}
-              </div>
-              <AddToCartForm product={product} onSubmit={this.handleSubmit} />
+              <div className="label-field">${price}</div>
+              <AddToCartForm {...addToCartFormProps} />
             </Col>
           </Row>
         </Grid>

@@ -1,13 +1,12 @@
-@import '../variables';
-
 .os--nav-header {
   display: flex;
   justify-content: center;
-  margin-bottom: $margin-xl-horizontal;
-  margin-top: $margin-lg-horizontal;
+  margin-bottom: $margin-lg-horizontal;
+  margin-top: $margin-md-horizontal;
 
   button {
-    font-size: $font-size-medium;
+    color: $os-black;
+    font-size: $font-size-lg;
     width: 100px;
   }
 
