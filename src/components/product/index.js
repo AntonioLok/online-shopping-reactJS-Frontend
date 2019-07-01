@@ -75,10 +75,7 @@ class Product extends Component {
             </Col>
             <Col xs={10} xsOffset={1} sm={5} md={6} smOffset={1} mdOffset={1}>
               <div className="label-field">{name}</div>
-              <div className="label-field">
-                $
-                {price}
-              </div>
+              <div className="label-field">${price}</div>
               <AddToCartForm {...addToCartFormProps} />
             </Col>
           </Row>

@@ -3,7 +3,7 @@
     list-style-type: none;
 
     li {
-      margin-bottom: $margin-lg-horizontal;
+      margin-bottom: $margin-md-horizontal;
 
       a {
         color: inherit;
@@ -13,7 +13,7 @@
 
   .product-list {
     .single-product {
-      margin-bottom: $margin-xl-horizontal;
+      margin-bottom: $margin-lg-horizontal;
       text-align: center;
 
       img {
