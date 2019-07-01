@@ -1,12 +1,12 @@
 .os--nav-header {
   display: flex;
   justify-content: center;
-  margin-bottom: $margin-xl-horizontal;
-  margin-top: $margin-lg-horizontal;
+  margin-bottom: $margin-lg-horizontal;
+  margin-top: $margin-md-horizontal;
 
   button {
     color: $os-black;
-    font-size: $font-size-medium;
+    font-size: $font-size-lg;
     width: 100px;
   }
 

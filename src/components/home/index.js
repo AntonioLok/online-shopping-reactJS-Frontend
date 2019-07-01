@@ -5,9 +5,7 @@ const Home = () => (
   <div className="home">
     <Grid>
       <Row>
-        <Col xs={12}>
-          Home
-        </Col>
+        <Col xs={12}>Home</Col>
       </Row>
     </Grid>
   </div>

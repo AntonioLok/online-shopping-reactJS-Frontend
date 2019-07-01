@@ -1,23 +1,23 @@
 form {
   border: $os-grey solid 1px;
-  margin-top: $margin-xxxl-vertical;
-  padding: $padding-xl-vertical;
+  margin-top: $margin-xxl-vertical;
+  padding: $padding-lg-vertical;
   width: 100%;
 
   > .title {
-    font-size: $font-size-large;
-    font-weight: 500;
-    margin-top: $margin-xl-vertical;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-lg;
+    margin-top: $margin-lg-vertical;
     text-align: center;
   }
 
   .form-field {
-    margin-bottom: $margin-lg-horizontal;
-    margin-top: $margin-lg-vertical;
+    margin-bottom: $margin-md-horizontal;
+    margin-top: $margin-md-vertical;
 
     [class*='label'] {
       color: $os-light-grey;
-      font-size: $font-size-small;
+      font-size: $font-size-md;
       margin-bottom: $margin-sm-horizontal;
     }
 
@@ -25,7 +25,7 @@ form {
       @include shape(100%, $height-lg);
 
       border: 1px solid $os-light-grey;
-      border-radius: $radius-sm;
+      border-radius: $radius-lg;
     }
   }
 
@@ -40,10 +40,10 @@ form {
     @include shape(100%, $height-lg);
 
     border-color: $os-light-grey;
-    margin-top: $margin-xl-horizontal;
+    margin-top: $margin-lg-horizontal;
 
     span {
-      font-size: $font-size-small;
+      font-size: $font-size-md;
     }
   }
 }
