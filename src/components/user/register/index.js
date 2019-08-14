@@ -6,8 +6,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { registerAPI } from '../../../store/actions/register';
-import { ROUTES } from '../../../constants';
-import RegisterForm from './register-form';
+import { ROUTES, FORM_STATUS_RESPONSE_MESSAGE } from '../../../constants';
+import CustomForm from '../../common/form';
+import asyncValidate from '../../../utils/email-exists';
 
 class Register extends Component {
   constructor() {
@@ -22,19 +23,23 @@ class Register extends Component {
 
   renderFormError() {
     const { registerState } = this.props;
-    const { message } = registerState;
+    const { statusCode } = registerState;
 
-    return message ? <Alert bsStyle="danger">{message}</Alert> : null;
+    return statusCode ? <Alert bsStyle="danger">{FORM_STATUS_RESPONSE_MESSAGE[statusCode]}</Alert> : null;
   }
 
   render() {
     const { registerState } = this.props;
     const { statusCode } = registerState;
-    const { logIn } = ROUTES;
+    const { login } = ROUTES;
+    console.log(this.props);
     const isRegisterSuccessful = statusCode === 201;
     const registerFormProps = {
       title: 'Register',
       onSubmit: this.handleSubmit,
+      form: 'RegisterForm',
+      asyncValidate,
+      asyncBlurFields: ['email'],
       inputFields: [
         { textInput: { name: 'email' } },
         { textInput: { name: 'password' } },
@@ -42,7 +47,7 @@ class Register extends Component {
     };
 
     if (isRegisterSuccessful) {
-      return <Redirect to={logIn} />;
+      return <Redirect to={login} />;
     }
 
     return (
@@ -50,8 +55,8 @@ class Register extends Component {
         <Grid>
           <Row>
             <Col xs={10} xsOffset={1} sm={10} smOffset={1} md={6} mdOffset={3}>
-              {isRegisterSuccessful && this.renderFormError()}
-              <RegisterForm {...registerFormProps} />
+              {!isRegisterSuccessful && this.renderFormError()}
+              <CustomForm {...registerFormProps} />
             </Col>
           </Row>
         </Grid>
@@ -72,7 +77,10 @@ const mapDispatchToProps = dispatch => ({
 
 Register.propTypes = {
   register: PropTypes.func.isRequired,
-  registerState: PropTypes.object.isRequired,
+  registerState: PropTypes.shape({
+    statusCode: PropTypes.number,
+    statusText: PropTypes.string,
+  }).isRequired,
 };
 
 export default connect(

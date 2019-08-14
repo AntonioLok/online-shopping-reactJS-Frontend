@@ -17,6 +17,6 @@ export const loginAPI = user => async (dispatch) => {
     });
     dispatch(login(SUCCESS, response.data));
   } catch (err) {
-    dispatch(login(FAILURE, err.json()));
+    dispatch(login(FAILURE, err.response.data));
   }
 };

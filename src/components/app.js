@@ -14,7 +14,7 @@ import '../stylesheets/app.scss';
 
 const history = createHistory();
 const {
-  home, register, products, product, logIn,
+  home, register, products, product, login,
 } = ROUTES;
 
 const App = () => (
@@ -27,7 +27,7 @@ const App = () => (
         <Route exact path={products} component={Products} />
         <Route exact path={product} component={Product} />
         <Route exact path={register} component={Register} />
-        <Route exact path={logIn} component={Login} />
+        <Route exact path={login} component={Login} />
       </Switch>
     </div>
   </Router>
