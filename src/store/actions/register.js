@@ -17,6 +17,6 @@ export const registerAPI = user => async (dispatch) => {
     });
     dispatch(register(SUCCESS, response.data));
   } catch (err) {
-    dispatch(register(FAILURE, err));
+    dispatch(register(FAILURE, err.response.data));
   }
 };

@@ -6,7 +6,7 @@ import { ROUTES } from '../../../constants';
 class NavMenu extends PureComponent {
   render() {
     const {
-      home, register, logIn,
+      home, register, login,
     } = ROUTES;
 
     return (
@@ -19,7 +19,7 @@ class NavMenu extends PureComponent {
           </Navbar.Header>
           <Nav pullRight>
             <NavItem href={register}>Register</NavItem>
-            <NavItem href={logIn}>Login</NavItem>
+            <NavItem href={login}>Login</NavItem>
           </Nav>
         </Navbar>
       </div>

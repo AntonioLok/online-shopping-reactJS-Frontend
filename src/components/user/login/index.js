@@ -5,58 +5,54 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { registerAPI } from '../../../store/actions/register';
+import { loginAPI } from '../../../store/actions/login';
 import { ROUTES, FORM_STATUS_RESPONSE_MESSAGE } from '../../../constants';
 import CustomForm from '../../common/form';
-import asyncValidate from '../../../utils/email-exists';
 
-class Register extends Component {
+class Login extends Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(fields) {
-    const { register } = this.props;
-    register(fields);
+    const { login } = this.props;
+    login(fields);
   }
 
   renderFormError() {
-    const { registerState } = this.props;
-    const { statusCode } = registerState;
+    const { loginState } = this.props;
+    const { statusCode } = loginState;
 
     return statusCode ? <Alert bsStyle="danger">{FORM_STATUS_RESPONSE_MESSAGE[statusCode]}</Alert> : null;
   }
 
   render() {
-    const { registerState } = this.props;
-    const { statusCode } = registerState;
-    const { login } = ROUTES;
-    console.log(this.props);
-    const isRegisterSuccessful = statusCode === 201;
-    const registerFormProps = {
-      title: 'Register',
+    const { loginState } = this.props;
+    const { statusCode } = loginState;
+    const { home } = ROUTES;
+    const isLoginSuccessful = statusCode === 200;
+    const loginFormProps = {
+      title: 'Login',
       onSubmit: this.handleSubmit,
-      form: 'RegisterForm',
-      asyncValidate,
-      asyncBlurFields: ['email'],
+      form: 'LoginForm',
       inputFields: [
         { textInput: { name: 'email' } },
         { textInput: { name: 'password' } },
       ],
     };
 
-    if (isRegisterSuccessful) {
-      return <Redirect to={login} />;
+    if (isLoginSuccessful) {
+      return <Redirect to={home} />;
     }
 
     return (
-      <div className="os--register">
+      <div className="os--login">
         <Grid>
           <Row>
             <Col xs={10} xsOffset={1} sm={10} smOffset={1} md={6} mdOffset={3}>
-              {!isRegisterSuccessful && this.renderFormError()}
-              <CustomForm {...registerFormProps} />
+              {!isLoginSuccessful && this.renderFormError()}
+              <CustomForm {...loginFormProps} />
             </Col>
           </Row>
         </Grid>
@@ -66,19 +62,20 @@ class Register extends Component {
 }
 
 const mapStateToProps = state => ({
-  registerState: state.register,
+  loginState: state.login,
 });
 
 const mapDispatchToProps = dispatch => ({
-  register: (user) => {
-    dispatch(registerAPI(user));
+  login: (user) => {
+    dispatch(loginAPI(user));
   },
 });
 
-Register.propTypes = {
-  register: PropTypes.func.isRequired,
-  registerState: PropTypes.shape({
+Login.propTypes = {
+  login: PropTypes.func.isRequired,
+  loginState: PropTypes.shape({
     statusCode: PropTypes.number,
+    message: PropTypes.string,
     statusText: PropTypes.string,
   }).isRequired,
 };
@@ -86,4 +83,4 @@ Register.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Register);
+)(Login);
