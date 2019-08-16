@@ -1,22 +1,13 @@
-import axios from 'axios';
-import { LOGIN } from './types';
-import { API_BASE_URL } from '../../settings';
-import { SUCCESS, FAILURE } from '../../constants';
+import { LOGIN, API_REQUEST } from './types';
 
-export const login = (status, payload) => ({
-  type: LOGIN[status],
-  payload,
+const login = data => ({
+  type: API_REQUEST,
+  payload: {
+    ...LOGIN,
+    endpoint: 'users/login',
+    method: 'POST',
+    data,
+  },
 });
 
-export const loginAPI = user => async (dispatch) => {
-  try {
-    const response = await axios({
-      url: `${API_BASE_URL}/users/login`,
-      method: 'post',
-      data: user,
-    });
-    dispatch(login(SUCCESS, response.data));
-  } catch (err) {
-    dispatch(login(FAILURE, err.response.data));
-  }
-};
+export default login;

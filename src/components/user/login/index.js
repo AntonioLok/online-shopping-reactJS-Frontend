@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { loginAPI } from '../../../store/actions/login';
+import login from '../../../store/actions/login';
 import { ROUTES, FORM_STATUS_RESPONSE_MESSAGE } from '../../../constants';
 import CustomForm from '../../common/form';
 
@@ -16,8 +16,8 @@ class Login extends Component {
   }
 
   handleSubmit(fields) {
-    const { login } = this.props;
-    login(fields);
+    const { dispatchLogin } = this.props;
+    dispatchLogin(fields);
   }
 
   renderFormError() {
@@ -66,13 +66,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: (user) => {
-    dispatch(loginAPI(user));
+  dispatchLogin: (user) => {
+    dispatch(login(user));
   },
 });
 
 Login.propTypes = {
-  login: PropTypes.func.isRequired,
+  dispatchLogin: PropTypes.func.isRequired,
   loginState: PropTypes.shape({
     statusCode: PropTypes.number,
     message: PropTypes.string,

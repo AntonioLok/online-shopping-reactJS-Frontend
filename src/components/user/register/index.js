@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import { registerAPI } from '../../../store/actions/register';
+import register from '../../../store/actions/register';
 import { ROUTES, FORM_STATUS_RESPONSE_MESSAGE } from '../../../constants';
 import CustomForm from '../../common/form';
 import asyncValidate from '../../../utils/email-exists';
@@ -17,8 +17,8 @@ class Register extends Component {
   }
 
   handleSubmit(fields) {
-    const { register } = this.props;
-    register(fields);
+    const { dispatchregister } = this.props;
+    dispatchregister(fields);
   }
 
   renderFormError() {
@@ -32,7 +32,7 @@ class Register extends Component {
     const { registerState } = this.props;
     const { statusCode } = registerState;
     const { login } = ROUTES;
-    console.log(this.props);
+
     const isRegisterSuccessful = statusCode === 201;
     const registerFormProps = {
       title: 'Register',
@@ -70,13 +70,13 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  register: (user) => {
-    dispatch(registerAPI(user));
+  dispatchregister: (user) => {
+    dispatch(register(user));
   },
 });
 
 Register.propTypes = {
-  register: PropTypes.func.isRequired,
+  dispatchregister: PropTypes.func.isRequired,
   registerState: PropTypes.shape({
     statusCode: PropTypes.number,
     statusText: PropTypes.string,

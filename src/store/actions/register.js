@@ -1,22 +1,13 @@
-import axios from 'axios';
-import { REGISTER } from './types';
-import { API_BASE_URL } from '../../settings';
-import { SUCCESS, FAILURE } from '../../constants';
+import { REGISTER, API_REQUEST } from './types';
 
-export const register = (status, payload) => ({
-  type: REGISTER[status],
-  payload,
+const register = data => ({
+  type: API_REQUEST,
+  payload: {
+    ...REGISTER,
+    endpoint: 'users/register',
+    method: 'POST',
+    data,
+  },
 });
 
-export const registerAPI = user => async (dispatch) => {
-  try {
-    const response = await axios({
-      url: `${API_BASE_URL}/users/register`,
-      method: 'post',
-      data: user,
-    });
-    dispatch(register(SUCCESS, response.data));
-  } catch (err) {
-    dispatch(register(FAILURE, err.response.data));
-  }
-};
+export default register;

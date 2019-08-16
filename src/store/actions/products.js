@@ -1,22 +1,12 @@
-import axios from 'axios';
-import { FETCH_PRODUCTS } from './types';
-import { API_BASE_URL } from '../../settings';
-import { SUCCESS, FAILURE } from '../../constants';
+import { FETCH_PRODUCTS, API_REQUEST } from './types';
 
-export const fetchProducts = (status, payload) => ({
-  type: FETCH_PRODUCTS[status],
-  payload,
+const fetchProducts = (section, type) => ({
+  type: API_REQUEST,
+  payload: {
+    ...FETCH_PRODUCTS,
+    endpoint: `products/${section}/${type}`,
+    method: 'GET',
+  },
 });
 
-
-export const fetchProductsAPI = (section, type) => async (dispatch) => {
-  try {
-    const response = await axios({
-      url: `${API_BASE_URL}/products/${section}/${type}`,
-      method: 'get',
-    });
-    dispatch(fetchProducts(SUCCESS, response.data));
-  } catch (err) {
-    dispatch(fetchProducts(FAILURE, err));
-  }
-};
+export default fetchProducts;
