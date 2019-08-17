@@ -1,10 +1,10 @@
-export const SECTIONS = ['Men', 'Women', 'Kids', 'Baby'];
+export const SECTIONS = ['Men', 'Women', 'Boys', 'Girls'];
 
 export const TYPES = {
   Men: ['Shirts', 'Jeans', 'Pants', 'Jackets & Coats'],
   Women: ['Dresses', 'Knitwear', 'Tops', 'Skirts'],
-  Kids: ['Tops', 'Pants', 'Jackets & Coats', 'Accessories'],
-  Baby: ['Special', 'Newborn', 'Toddler', 'Socks & Accessories'],
+  Boys: ['Shirts', 'Jeans', 'Pants', 'Shoes'],
+  Girls: ['Tops & T-shirts', 'Jeans', 'Jumpsuits', 'Shorts'],
 };
 
 export const ROUTES = {
