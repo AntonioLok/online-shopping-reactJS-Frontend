@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import login from '../../../store/actions/login';
-import { ROUTES, FORM_STATUS_RESPONSE_MESSAGE } from '../../../constants';
+import { ROUTES, FORM_STATUS_RESPONSE_MESSAGE, FALLBACK_ERROR_MESSAGE_FORM } from '../../../constants';
 import CustomForm from '../../common/form';
 
 class Login extends Component {
@@ -23,8 +23,10 @@ class Login extends Component {
   renderFormError() {
     const { loginState } = this.props;
     const { statusCode } = loginState;
+    const message = FORM_STATUS_RESPONSE_MESSAGE[statusCode]
+      ? FORM_STATUS_RESPONSE_MESSAGE[statusCode] : FALLBACK_ERROR_MESSAGE_FORM;
 
-    return statusCode ? <Alert bsStyle="danger">{FORM_STATUS_RESPONSE_MESSAGE[statusCode]}</Alert> : null;
+    return statusCode ? <Alert bsStyle="danger">{message}</Alert> : null;
   }
 
   render() {

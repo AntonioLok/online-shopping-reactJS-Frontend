@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import register from '../../../store/actions/register';
-import { ROUTES, FORM_STATUS_RESPONSE_MESSAGE } from '../../../constants';
+import { ROUTES, FORM_STATUS_RESPONSE_MESSAGE, FALLBACK_ERROR_MESSAGE_FORM } from '../../../constants';
 import CustomForm from '../../common/form';
 import asyncValidate from '../../../utils/email-exists';
 
@@ -24,8 +24,10 @@ class Register extends Component {
   renderFormError() {
     const { registerState } = this.props;
     const { statusCode } = registerState;
+    const message = FORM_STATUS_RESPONSE_MESSAGE[statusCode]
+      ? FORM_STATUS_RESPONSE_MESSAGE[statusCode] : FALLBACK_ERROR_MESSAGE_FORM;
 
-    return statusCode ? <Alert bsStyle="danger">{FORM_STATUS_RESPONSE_MESSAGE[statusCode]}</Alert> : null;
+    return statusCode ? <Alert bsStyle="danger">{message}</Alert> : null;
   }
 
   render() {
