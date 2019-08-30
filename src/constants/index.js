@@ -29,6 +29,8 @@ export const FORM_STATUS_RESPONSE_MESSAGE = {
   [HTTP_STATUS_CODE.INTERNAL_SERVER_ERROR]: 'An unknown error has occurred. Please try again.',
 };
 
+export const FALLBACK_ERROR_MESSAGE_FORM = 'An unknown error has occurred. Please try again.';
+
 export const SUCCESS = 'SUCCESS';
 
 export const FAILURE = 'FAILURE';

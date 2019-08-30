@@ -5,7 +5,7 @@ import {
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AddToCartForm from './add-to-cart-form';
-import { fetchProductAPI } from '../../store/actions/product';
+import fetchProduct from '../../store/actions/product';
 
 class Product extends Component {
   constructor() {
@@ -18,9 +18,9 @@ class Product extends Component {
   }
 
   componentDidMount() {
-    const { fetchProduct, match } = this.props;
+    const { dispatchFetchProduct, match } = this.props;
     const { id } = match.params;
-    fetchProduct(id);
+    dispatchFetchProduct(id);
   }
 
   handleSubmit(fields) {
@@ -96,15 +96,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchProduct: (id) => {
-    dispatch(fetchProductAPI(id));
+  dispatchFetchProduct: (id) => {
+    dispatch(fetchProduct(id));
   },
 });
 
 Product.propTypes = {
   history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
-  fetchProduct: PropTypes.func.isRequired,
+  dispatchFetchProduct: PropTypes.func.isRequired,
   productState: PropTypes.object.isRequired,
 };
 

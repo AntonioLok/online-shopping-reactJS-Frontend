@@ -6,20 +6,20 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import ProductList from './product-list';
 import { TYPES } from '../../constants/index';
-import { fetchProductsAPI } from '../../store/actions/products';
+import fetchProducts from '../../store/actions/products';
 
 class Products extends Component {
   componentDidMount() {
-    const { fetchProducts, match } = this.props;
+    const { dispatchfetchProducts, match } = this.props;
     const { section, type } = match.params;
-    fetchProducts(section, type);
+    dispatchfetchProducts(section, type);
   }
 
   componentDidUpdate(prevProps) {
-    const { fetchProducts, match } = this.props;
+    const { dispatchfetchProducts, match } = this.props;
     const { section, type } = match.params;
     if (section !== prevProps.match.params.section || type !== prevProps.match.params.type) {
-      fetchProducts(section, type);
+      dispatchfetchProducts(section, type);
     }
   }
 
@@ -37,6 +37,7 @@ class Products extends Component {
   render() {
     const { match, productsState, history } = this.props;
     const { section } = match.params;
+
     const products = productsState.data;
     return (
       <div className="os--products">
@@ -60,15 +61,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchProducts: (section, type) => {
-    dispatch(fetchProductsAPI(section, type));
+  dispatchfetchProducts: (section, type) => {
+    dispatch(fetchProducts(section, type));
   },
 });
 
 Products.propTypes = {
   match: PropTypes.object.isRequired,
   history: PropTypes.object.isRequired,
-  fetchProducts: PropTypes.func.isRequired,
+  dispatchfetchProducts: PropTypes.func.isRequired,
   productsState: PropTypes.object.isRequired,
 };
 
