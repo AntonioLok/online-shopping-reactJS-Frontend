@@ -5,6 +5,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from './store/reducers';
 import App from './components/app';
+import validateToken from './store/actions/validate-token';
 import apiRequestMiddleware from './store/middleware/api-request';
 
 /* eslint-disable no-underscore-dangle */
@@ -17,6 +18,12 @@ const store = createStore(
   ),
 );
 /* eslint-enable */
+
+// validate the token stored in the local storage
+const token = localStorage.getItem('OS_AUTH_TOKEN');
+if (token) {
+  store.dispatch(validateToken(token));
+}
 
 ReactDOM.render(
   <Provider store={store}>

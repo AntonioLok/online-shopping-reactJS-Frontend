@@ -4,6 +4,7 @@ import products from './products';
 import product from './product';
 import register from './register';
 import login from './login';
+import authentication from './authentication';
 
 const rootReducer = combineReducers({
   products,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   form,
   register,
   login,
+  authentication,
 });
 
 export default rootReducer;

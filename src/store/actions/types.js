@@ -12,3 +12,5 @@ export const FETCH_PRODUCT = asyncActionType('FETCH_PRODUCT');
 export const REGISTER = asyncActionType('REGISTER');
 
 export const LOGIN = asyncActionType('LOGIN');
+
+export const VALIDATE_TOKEN = asyncActionType('VERIFY_TOKEN');
