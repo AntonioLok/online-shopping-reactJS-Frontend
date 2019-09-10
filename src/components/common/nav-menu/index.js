@@ -1,13 +1,32 @@
 import React, { PureComponent } from 'react';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { ROUTES } from '../../../constants';
 
 class NavMenu extends PureComponent {
+  // eslint-disable-next-line class-methods-use-this
+  logOut() {
+    localStorage.removeItem('OS_AUTH_TOKEN');
+  }
+
   render() {
     const {
       home, register, login,
     } = ROUTES;
+    const { isAuthenticated } = this.props;
+
+    const loginItems = (
+      <Nav pullRight>
+        <NavItem href={register}>Register</NavItem>
+        <NavItem href={login}>Login</NavItem>
+      </Nav>
+    );
+    const logoutItems = (
+      <Nav pullRight>
+        <NavItem href={home} onClick={() => this.logOut()}>Log out</NavItem>
+      </Nav>
+    );
 
     return (
       <div className="os--nav-menu">
@@ -17,14 +36,15 @@ class NavMenu extends PureComponent {
               <Link to={home}>Home</Link>
             </Navbar.Brand>
           </Navbar.Header>
-          <Nav pullRight>
-            <NavItem href={register}>Register</NavItem>
-            <NavItem href={login}>Login</NavItem>
-          </Nav>
+          {!isAuthenticated ? loginItems : logoutItems}
         </Navbar>
       </div>
     );
   }
 }
+
+NavMenu.propTypes = {
+  isAuthenticated: PropTypes.bool.isRequired,
+};
 
 export default NavMenu;
