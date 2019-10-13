@@ -3,7 +3,6 @@ import { Router } from 'react-router';
 import { Switch, Route } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import { connect } from 'react-redux';
-import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 import NavMenu from './common/nav-menu';
@@ -15,6 +14,7 @@ import Login from './user/login';
 import Home from './home';
 import { ROUTES } from '../constants';
 import '../stylesheets/app.scss';
+import getIsAuthenticated from '../utils/auth/get-is-authenticated';
 
 const history = createHistory();
 const {
@@ -24,22 +24,11 @@ const {
 class App extends Component {
   shouldComponentUpdate(nextProps) {
     const { loginState } = this.props;
-    // deep comparisons
     return !_.isEqual(loginState, nextProps.loginState);
   }
 
   render() {
-    const token = localStorage.getItem('OS_AUTH_TOKEN');
-
-    let isAuthenticated = false;
-    if (token) {
-      const decoded = jwtDecode(token);
-      if (Date.now() < decoded.exp * 1000) {
-        isAuthenticated = true;
-      } else {
-        localStorage.removeItem('OS_AUTH_TOKEN');
-      }
-    }
+    const isAuthenticated = getIsAuthenticated();
 
     return (
       <Router history={history}>

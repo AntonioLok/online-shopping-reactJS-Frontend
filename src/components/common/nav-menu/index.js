@@ -3,13 +3,9 @@ import { Navbar, Nav, NavItem } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ROUTES } from '../../../constants';
+import tokenUtils from '../../../utils/auth/token';
 
 class NavMenu extends PureComponent {
-  // eslint-disable-next-line class-methods-use-this
-  logOut() {
-    localStorage.removeItem('OS_AUTH_TOKEN');
-  }
-
   render() {
     const {
       home, register, login,
@@ -24,7 +20,7 @@ class NavMenu extends PureComponent {
     );
     const logoutItems = (
       <Nav pullRight>
-        <NavItem href={home} onClick={() => this.logOut()}>Log out</NavItem>
+        <NavItem href={home} onClick={() => tokenUtils.remove()}>Log out</NavItem>
       </Nav>
     );
 
