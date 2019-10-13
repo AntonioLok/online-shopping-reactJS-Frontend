@@ -8,8 +8,7 @@
     "build": "webpack --mode production && cp -r assets build/www/",
     "clean": "rm -rf build",
     "eslint": "gulp eslint",
-    "sass-lint": "gulp sass-lint",
-    "precommit": "npm run eslint && npm run sass-lint"
+    "sass-lint": "gulp sass-lint"
   },
   "repository": {
     "type": "git",
@@ -19,6 +18,8 @@
   "author": "Antonio Lok Chan",
   "license": "ISC",
   "dependencies": {
+    "@commitlint/cli": "8.2.0",
+    "@commitlint/config-conventional": "8.2.0",
     "axios": "0.18.1",
     "classnames": "2.2.6",
     "history": "4.7.2",
