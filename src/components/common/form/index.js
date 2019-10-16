@@ -6,12 +6,14 @@ import { connect } from 'react-redux';
 import Button from './button';
 import TextInput from './input-fields/text-input';
 import SelectInput from './input-fields/select-input';
+import { FIELDS_TYPE } from '../../../constants';
 
 class CustomForm extends PureComponent {
   render() {
     const {
       title, handleSubmit, submitButtonProps, inputFields,
     } = this.props;
+    const { TEXT_INPUT } = FIELDS_TYPE;
 
     const emailTextInput = (
       <TextInput
@@ -32,17 +34,17 @@ class CustomForm extends PureComponent {
     );
 
     const inputFieldArray = inputFields.map((field) => {
-      if (field.textInput) {
-        if (field.textInput.name === 'email') {
+      if (field.type === TEXT_INPUT) {
+        if (field.name === 'email') {
           return emailTextInput;
         }
-        if (field.textInput.name === 'password') {
+        if (field.name === 'password') {
           return passwordTextInput;
         }
         // Custom field input
-        return <TextInput {...field.textInput} />;
+        return <TextInput {...field} />;
       }
-      return <SelectInput {...field.selectInput} />;
+      return <SelectInput {...field} />;
     });
 
     return (

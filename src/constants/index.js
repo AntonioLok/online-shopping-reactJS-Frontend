@@ -34,3 +34,8 @@ export const FALLBACK_ERROR_MESSAGE_FORM = 'An unknown error has occurred. Pleas
 export const SUCCESS = 'SUCCESS';
 
 export const FAILURE = 'FAILURE';
+
+export const FIELDS_TYPE = {
+  TEXT_INPUT: 'TEXT_INPUT',
+  SELECT_INPUT: 'SELECT_INPUT',
+};

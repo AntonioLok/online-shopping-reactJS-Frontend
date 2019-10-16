@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import login from '../../../store/actions/login';
-import { ROUTES, FORM_STATUS_RESPONSE_MESSAGE, FALLBACK_ERROR_MESSAGE_FORM } from '../../../constants';
+import {
+  ROUTES, FORM_STATUS_RESPONSE_MESSAGE, FALLBACK_ERROR_MESSAGE_FORM, FIELDS_TYPE,
+} from '../../../constants';
 import CustomForm from '../../common/form';
 
 class Login extends Component {
@@ -30,6 +32,7 @@ class Login extends Component {
   }
 
   render() {
+    const { TEXT_INPUT } = FIELDS_TYPE;
     const { loginState } = this.props;
     const { statusCode } = loginState;
     const { home } = ROUTES;
@@ -39,8 +42,8 @@ class Login extends Component {
       onSubmit: this.handleSubmit,
       form: 'LoginForm',
       inputFields: [
-        { textInput: { name: 'email' } },
-        { textInput: { name: 'password' } },
+        { type: TEXT_INPUT, name: 'email' },
+        { type: TEXT_INPUT, name: 'password' },
       ],
     };
 

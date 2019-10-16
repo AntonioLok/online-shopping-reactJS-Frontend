@@ -14,7 +14,10 @@ class AddToCartForm extends PureComponent {
 AddToCartForm.propTypes = {
   inputFields: PropTypes.array,
   handleSubmit: PropTypes.func.isRequired,
-  submitButtonProps: PropTypes.array,
+  submitButtonProps: PropTypes.shape({
+    icon: PropTypes.string,
+    caption: PropTypes.string.isRequired,
+  }),
 };
 
 export default reduxForm({ form: 'AddToCartForm' })(AddToCartForm);

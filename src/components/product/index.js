@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AddToCartForm from './add-to-cart-form';
 import fetchProduct from '../../store/actions/product';
+import { FIELDS_TYPE } from '../../constants';
 
 class Product extends Component {
   constructor() {
@@ -38,6 +39,7 @@ class Product extends Component {
   }
 
   render() {
+    const { SELECT_INPUT } = FIELDS_TYPE;
     const { productState } = this.props;
     const product = productState.data;
     const { sizeAvailable } = product;
@@ -54,12 +56,18 @@ class Product extends Component {
       },
       inputFields: [
         {
-          selectInput: {
-            name: 'selectSize',
-            options: sizeAvailable,
-            validate: ['required'],
-            placeholder: 'Please select a size',
-          },
+          type: SELECT_INPUT,
+          name: 'selectSize',
+          options: sizeAvailable,
+          validate: ['required'],
+          placeholder: 'Please select a size',
+        },
+        {
+          type: SELECT_INPUT,
+          name: 'selectAmount',
+          options: [1, 2, 3, 4, 5],
+          validate: ['required'],
+          placeholder: 'Please select an amount',
         },
       ],
     };
