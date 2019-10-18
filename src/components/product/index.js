@@ -6,14 +6,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import AddToCartForm from './add-to-cart-form';
 import fetchProduct from '../../store/actions/product';
+import { updateCart } from '../../store/actions/cart';
 import { FIELDS_TYPE } from '../../constants';
+import getUpdatedCartProducts from '../../utils/cart-products/get-updated-cart-products';
+import getUnauthenticatedCartProducts from '../../utils/cart-products/get-unauthenticated-cart-products';
 
 class Product extends Component {
   constructor() {
     super();
-    this.state = {
-      isLoggedIn: false, // set to true by default for demo purposes
-    };
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -25,17 +25,26 @@ class Product extends Component {
   }
 
   handleSubmit(fields) {
-    const { productState, history } = this.props;
+    const {
+      productState,
+      dispatchUpdateCart,
+      cartProducts,
+      isAuthenticated,
+      updateUnauthenticatedUserCart,
+    } = this.props;
     const product = productState.data;
-    const { isLoggedIn } = this.state;
-    if (!isLoggedIn) {
-      const cartProduct = Object.assign(product, fields, { amount: 1 });
-      const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
-      cart.push(cartProduct);
-      localStorage.setItem('cart', JSON.stringify(cart));
+
+    if (isAuthenticated) {
+      dispatchUpdateCart(
+        getUpdatedCartProducts(cartProducts, product, fields.selectSize, fields.selectAmount),
+      );
+    } else {
+      const unauthenticatedUpdatedCartProducts = getUpdatedCartProducts(
+        getUnauthenticatedCartProducts(), product, fields.selectSize, fields.selectAmount,
+      );
+      localStorage.setItem('OS_UNAUTHENTICATED_USER_CART', JSON.stringify((unauthenticatedUpdatedCartProducts)));
+      updateUnauthenticatedUserCart(unauthenticatedUpdatedCartProducts);
     }
-    // Will add logic here once the login and sign up component is completed.
-    history.push('/cart');
   }
 
   render() {
@@ -107,6 +116,9 @@ const mapDispatchToProps = dispatch => ({
   dispatchFetchProduct: (id) => {
     dispatch(fetchProduct(id));
   },
+  dispatchUpdateCart: (products) => {
+    dispatch(updateCart(products));
+  },
 });
 
 Product.propTypes = {
@@ -114,6 +126,16 @@ Product.propTypes = {
   match: PropTypes.object.isRequired,
   dispatchFetchProduct: PropTypes.func.isRequired,
   productState: PropTypes.object.isRequired,
+  cartProducts: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string,
+    quantity: PropTypes.number,
+    size: PropTypes.string,
+    img: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+  })),
+  isAuthenticated: PropTypes.bool.isRequired,
+  updateUnauthenticatedUserCart: PropTypes.func,
 };
 
 export default connect(

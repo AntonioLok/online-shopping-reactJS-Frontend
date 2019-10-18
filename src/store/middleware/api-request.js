@@ -10,16 +10,30 @@ const apiRequestMiddleware = store => next => async (action) => {
   }
 
   const {
-    SUCCESS, FAILURE, endpoint, method, data,
+    SUCCESS, FAILURE, endpoint, method, data, authorization = false,
   } = action.payload;
   const url = `${API_BASE_URL}/${endpoint}`;
 
   try {
-    const response = await axios({
+    let response;
+    const axiosRequestArguments = {
       url,
       method,
       data,
-    });
+    };
+
+    if (authorization) {
+      const token = localStorage.getItem('OS_AUTH_TOKEN');
+      response = await axios({
+        ...axiosRequestArguments,
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      });
+    } else {
+      response = await axios({ ...axiosRequestArguments });
+    }
     dispatch({ type: SUCCESS, payload: response.data });
   } catch (err) {
     dispatch({ type: FAILURE, payload: err.response.data });
