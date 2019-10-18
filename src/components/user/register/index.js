@@ -6,7 +6,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import register from '../../../store/actions/register';
-import { ROUTES, FORM_STATUS_RESPONSE_MESSAGE, FALLBACK_ERROR_MESSAGE_FORM } from '../../../constants';
+import {
+  ROUTES, FORM_STATUS_RESPONSE_MESSAGE, FALLBACK_ERROR_MESSAGE_FORM, FIELDS_TYPE,
+} from '../../../constants';
 import CustomForm from '../../common/form';
 import asyncValidate from '../../../utils/email-exists';
 
@@ -31,6 +33,7 @@ class Register extends Component {
   }
 
   render() {
+    const { TEXT_INPUT } = FIELDS_TYPE;
     const { registerState } = this.props;
     const { statusCode } = registerState;
     const { login } = ROUTES;
@@ -43,8 +46,8 @@ class Register extends Component {
       asyncValidate,
       asyncBlurFields: ['email'],
       inputFields: [
-        { textInput: { name: 'email' } },
-        { textInput: { name: 'password' } },
+        { type: TEXT_INPUT, name: 'email' },
+        { type: TEXT_INPUT, name: 'password' },
       ],
     };
 
