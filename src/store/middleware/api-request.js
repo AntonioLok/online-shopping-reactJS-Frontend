@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import axios from 'axios';
+import tokenUtils from '../../utils/auth/token';
 import API_BASE_URL from '../../settings/index';
 
 const apiRequestMiddleware = store => next => async (action) => {
@@ -23,7 +24,8 @@ const apiRequestMiddleware = store => next => async (action) => {
     };
 
     if (authorization) {
-      const token = localStorage.getItem('OS_AUTH_TOKEN');
+      const token = tokenUtils.get();
+
       response = await axios({
         ...axiosRequestArguments,
         headers: {
