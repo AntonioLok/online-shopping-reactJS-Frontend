@@ -24,6 +24,6 @@ aws s3 sync build/www/ "s3://$S3_BUCKET1" --acl public-read --delete
 aws s3 sync build/www/ "s3://$S3_BUCKET2" --acl public-read --delete
 
 # invalidate the now-outdated assets rather than waiting for them to expire
-# aws cloudfront create-invalidation \
-#   --distribution-id $CLOUDFRONT_DIST_ID \
-#   --paths /*
+aws cloudfront create-invalidation \
+  --distribution-id $CLOUDFRONT_DIST_ID \
+  --paths /*
