@@ -13,6 +13,7 @@ export const ROUTES = {
   login: '/login',
   products: '/products/:section/:type',
   product: '/product/:id',
+  cart: '/cart',
 };
 
 export const HTTP_STATUS_CODE = {
@@ -39,3 +40,11 @@ export const FIELDS_TYPE = {
   TEXT_INPUT: 'TEXT_INPUT',
   SELECT_INPUT: 'SELECT_INPUT',
 };
+
+export const ORDER_TOTAL_ITEMS_LABELS = {
+  ORDER_VALUE: 'ORDER VALUE',
+  DELIVERY: 'DELIVERY',
+  TOTAL: 'TOTAL',
+};
+
+export const DELIVERY_PRICE = 10;

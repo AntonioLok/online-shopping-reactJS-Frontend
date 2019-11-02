@@ -8,19 +8,21 @@ import tokenUtils from '../../../utils/auth/token';
 class NavMenu extends PureComponent {
   render() {
     const {
-      home, register, login,
+      home, register, login, cart,
     } = ROUTES;
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, cartProducts } = this.props;
 
     const loginItems = (
       <Nav pullRight>
         <NavItem href={register}>Register</NavItem>
         <NavItem href={login}>Login</NavItem>
+        <NavItem href={cart}>Shopping Bag ({cartProducts.length})</NavItem>
       </Nav>
     );
     const logoutItems = (
       <Nav pullRight>
         <NavItem href={home} onClick={() => tokenUtils.remove()}>Log out</NavItem>
+        <NavItem href={cart}>Shopping Bag ({cartProducts.length})</NavItem>
       </Nav>
     );
 
@@ -41,6 +43,14 @@ class NavMenu extends PureComponent {
 
 NavMenu.propTypes = {
   isAuthenticated: PropTypes.bool.isRequired,
+  cartProducts: PropTypes.arrayOf(PropTypes.shape({
+    _id: PropTypes.string,
+    quantity: PropTypes.number,
+    size: PropTypes.string,
+    img: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+  })),
 };
 
 export default NavMenu;

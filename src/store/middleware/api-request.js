@@ -1,5 +1,6 @@
 /* eslint-disable consistent-return */
 import axios from 'axios';
+import tokenUtils from '../../utils/auth/token';
 import API_BASE_URL from '../../settings/index';
 
 const apiRequestMiddleware = store => next => async (action) => {
@@ -10,16 +11,31 @@ const apiRequestMiddleware = store => next => async (action) => {
   }
 
   const {
-    SUCCESS, FAILURE, endpoint, method, data,
+    SUCCESS, FAILURE, endpoint, method, data, authorization = false,
   } = action.payload;
   const url = `${API_BASE_URL}/${endpoint}`;
 
   try {
-    const response = await axios({
+    let response;
+    const axiosRequestArguments = {
       url,
       method,
       data,
-    });
+    };
+
+    if (authorization) {
+      const token = tokenUtils.get();
+
+      response = await axios({
+        ...axiosRequestArguments,
+        headers: {
+          Authorization: token,
+          'Content-Type': 'application/json',
+        },
+      });
+    } else {
+      response = await axios({ ...axiosRequestArguments });
+    }
     dispatch({ type: SUCCESS, payload: response.data });
   } catch (err) {
     dispatch({ type: FAILURE, payload: err.response.data });

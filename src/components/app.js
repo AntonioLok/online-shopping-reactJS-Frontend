@@ -12,35 +12,94 @@ import Product from './product';
 import Register from './user/register';
 import Login from './user/login';
 import Home from './home';
+import Cart from './cart';
 import { ROUTES } from '../constants';
+import { fetchCart } from '../store/actions/cart';
 import '../stylesheets/app.scss';
+import getUnauthenticatedCartProducts from '../utils/cart-products/get-unauthenticated-cart-products';
 import getIsAuthenticated from '../utils/auth/get-is-authenticated';
 
 const history = createHistory();
 const {
-  home, register, products, product, login,
+  home, register, products, product, login, cart,
 } = ROUTES;
-
 class App extends Component {
-  shouldComponentUpdate(nextProps) {
+  constructor() {
+    super();
+    this.state = {
+      unauthenticatedCartProducts: getUnauthenticatedCartProducts(),
+    };
+    this.updateUnauthenticatedUserCart = this.updateUnauthenticatedUserCart.bind(this);
+  }
+
+  componentDidMount() {
+    const isAuthenticated = getIsAuthenticated();
+    if (isAuthenticated) {
+      const { dispatchFetchCart } = this.props;
+      dispatchFetchCart();
+    }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const { loginState, cartState } = this.props;
+    return !_.isEqual(loginState, nextProps.loginState)
+    || !_.isEqual(cartState, nextProps.cartState)
+    || !_.isEqual(this.state, nextState);
+  }
+
+  componentDidUpdate(prevProps) {
     const { loginState } = this.props;
-    return !_.isEqual(loginState, nextProps.loginState);
+    if (!_.isEqual(loginState, prevProps.loginState) && loginState.statusCode === 200) {
+      const { dispatchFetchCart } = this.props;
+      dispatchFetchCart();
+    }
+  }
+
+  updateUnauthenticatedUserCart(unauthenticatedCartProducts) {
+    this.setState({ unauthenticatedCartProducts });
   }
 
   render() {
+    const { cartState } = this.props;
+    const { unauthenticatedCartProducts } = this.state;
     const isAuthenticated = getIsAuthenticated();
+    const cartProps = {
+      isAuthenticated,
+      cartProducts: isAuthenticated ? cartState.data : unauthenticatedCartProducts,
+    };
 
     return (
       <Router history={history}>
         <div className="app-container">
-          <NavMenu isAuthenticated={isAuthenticated} />
+          <NavMenu {...cartProps} />
           <NavHeader history={history} />
           <Switch>
             <Route exact path={home} component={Home} />
             <Route exact path={products} component={Products} />
-            <Route exact path={product} component={Product} />
             <Route exact path={register} component={Register} />
             <Route exact path={login} component={Login} />
+            <Route
+              exact
+              path={product}
+              render={
+                props => (
+                  <Product
+                    {...props}
+                    {...cartProps}
+                    updateUnauthenticatedUserCart={this.updateUnauthenticatedUserCart}
+                  />
+                )}
+            />
+            <Route exact path={register} component={Register} />
+            <Route exact path={login} component={Login} />
+            <Route
+              exact
+              path={cart}
+              render={
+                props => (
+                  <Cart {...props} {...cartProps} />
+                )}
+            />
           </Switch>
         </div>
       </Router>
@@ -50,6 +109,13 @@ class App extends Component {
 
 const mapStateToProps = state => ({
   loginState: state.login,
+  cartState: state.cart,
+});
+
+const mapDispatchToProps = dispatch => ({
+  dispatchFetchCart: () => {
+    dispatch(fetchCart());
+  },
 });
 
 App.propTypes = {
@@ -58,8 +124,22 @@ App.propTypes = {
     message: PropTypes.string,
     statusText: PropTypes.string,
   }).isRequired,
+  dispatchFetchCart: PropTypes.func.isRequired,
+  cartState: PropTypes.shape({
+    statusCode: PropTypes.number,
+    data: PropTypes.arrayOf(PropTypes.shape({
+      _id: PropTypes.string,
+      quantity: PropTypes.number,
+      size: PropTypes.string,
+      img: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+    })),
+    statusText: PropTypes.string,
+  }).isRequired,
 };
 
 export default connect(
   mapStateToProps,
+  mapDispatchToProps,
 )(App);
