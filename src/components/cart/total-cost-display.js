@@ -16,8 +16,8 @@ class TotalCostDisplay extends Component {
 
 TotalCostDisplay.propTypes = {
   item: PropTypes.shape({
-    label: PropTypes.string,
-    price: PropTypes.number,
+    label: PropTypes.string.isRequired,
+    price: PropTypes.string.isRequired,
   }),
 };
 

@@ -32,7 +32,7 @@ ProductsCart.propTypes = {
     img: PropTypes.string,
     name: PropTypes.string,
     price: PropTypes.number,
-  }),
+  }).isRequired,
 };
 
 export default ProductsCart;
