@@ -5,8 +5,8 @@ import {
 import PropTypes from 'prop-types';
 import { ORDER_TOTAL_ITEMS_LABELS, DELIVERY_PRICE } from '../../constants';
 import getTotalSingleProductCost from '../../utils/cart-products/get-total-single-product-cost';
-import renderTotalCostDisplay from './total-cost-display';
-import renderProductsCart from './products-cart';
+import TotalCostDisplay from './total-cost-display';
+import ProductsCart from './products-cart';
 
 class Cart extends Component {
   getTotalCost() {
@@ -32,7 +32,7 @@ class Cart extends Component {
       <Fragment>
         <Col md={7}>
           <div className="shopping-bag-items">
-            {cartProducts.map(product => renderProductsCart(product))}
+            {cartProducts.map(product => <ProductsCart product={product} />)}
           </div>
         </Col>
         <Col md={5}>
@@ -41,7 +41,7 @@ class Cart extends Component {
               <div>SHOPPING BAG TOTAL</div>
             </div>
             <div className="section">
-              {orderTotalItems.map(item => renderTotalCostDisplay(item))}
+              {orderTotalItems.map(item => <TotalCostDisplay item={item} />)}
               <Button className="checkout" variant="dark">Check out</Button>
             </div>
           </div>
