@@ -1,5 +1,6 @@
 #!/bin/bash
-S3_BUCKET="online-shopping-store"
+S3_BUCKET1="antoniolok.com"
+S3_BUCKET2="www.antoniolok.com"
 
 if [[ $TRAVIS_BRANCH == master ]]; then
 
@@ -19,7 +20,8 @@ pip install awscli --upgrade --user
 # --delete says to delete files in the bucket that aren't present in the build folder
 #   this ensures that old assets built with webpack with hashed names get deleted
 #   when a new build of the app is made and the assets get new hash names
-aws s3 sync build/www/ "s3://$S3_BUCKET" --acl public-read --delete
+aws s3 sync build/www/ "s3://$S3_BUCKET1" --acl public-read --delete
+aws s3 sync build/www/ "s3://$S3_BUCKET2" --acl public-read --delete
 
 # invalidate the now-outdated assets rather than waiting for them to expire
 aws cloudfront create-invalidation \
