@@ -1,4 +1,5 @@
 $cart-product-image-height: 240px;
+$delete-button-height: 24px;
 
 .os--cart {
     .title {
@@ -21,16 +22,31 @@ $cart-product-image-height: 240px;
 
             > .info {
                 margin-left: $margin-md-horizontal;
+                width: 70%;
 
                 > .title-label {
+                    font-size: $font-size-xl;
+                    font-weight: $font-weight-xl;
+                    margin-bottom: $margin-sm-vertical;
+                }
+
+                > .total-cost-label {
                     font-size: $font-size-lg;
                     font-weight: $font-weight-lg;
-                    margin-bottom: $margin-sm-vertical;
+                    margin-bottom: $margin-md-vertical
                 }
 
                 > .description-label {
                     margin-bottom: $margin-sm-vertical;
                 }
+            }
+
+            button {
+                background-color: Transparent;
+                border: 0;
+                cursor: pointer;
+                height: $delete-button-height;
+                outline: none;
             }
         }
     }

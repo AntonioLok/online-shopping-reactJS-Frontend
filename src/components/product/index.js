@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import AddToCartForm from './add-to-cart-form';
 import fetchProduct from '../../store/actions/product';
 import { updateCart } from '../../store/actions/cart';
-import { FIELDS_TYPE } from '../../constants';
+import { FIELDS_TYPE, SELECT_AMOUNT_OPTIONS } from '../../constants';
 import getUpdatedCartProducts from '../../utils/cart-products/get-updated-cart-products';
 import getUnauthenticatedCartProducts from '../../utils/cart-products/get-unauthenticated-cart-products';
 
@@ -36,11 +36,11 @@ class Product extends Component {
 
     if (isAuthenticated) {
       dispatchUpdateCart(
-        getUpdatedCartProducts(cartProducts, product, fields.selectSize, fields.selectAmount),
+        getUpdatedCartProducts(cartProducts, product, fields.selectSize, fields.selectAmount), true,
       );
     } else {
       const unauthenticatedUpdatedCartProducts = getUpdatedCartProducts(
-        getUnauthenticatedCartProducts(), product, fields.selectSize, fields.selectAmount,
+        getUnauthenticatedCartProducts(), product, fields.selectSize, fields.selectAmount, true,
       );
       localStorage.setItem('OS_UNAUTHENTICATED_USER_CART', JSON.stringify((unauthenticatedUpdatedCartProducts)));
       updateUnauthenticatedUserCart(unauthenticatedUpdatedCartProducts);
@@ -74,7 +74,7 @@ class Product extends Component {
         {
           type: SELECT_INPUT,
           name: 'selectAmount',
-          options: [1, 2, 3, 4, 5],
+          options: SELECT_AMOUNT_OPTIONS,
           validate: ['required'],
           placeholder: 'Please select an amount',
         },

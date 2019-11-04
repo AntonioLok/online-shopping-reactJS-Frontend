@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { ORDER_TOTAL_ITEMS_LABELS, DELIVERY_PRICE } from '../../constants';
 import getTotalSingleProductCost from '../../utils/cart-products/get-total-single-product-cost';
 import TotalCostDisplay from './total-cost-display';
-import ProductsCart from './products-cart';
+import CartProductsComponent from './cart-products';
 
 class Cart extends Component {
   getTotalCost() {
@@ -19,7 +19,7 @@ class Cart extends Component {
   }
 
   render() {
-    const { cartProducts } = this.props;
+    const { cartProducts, isAuthenticated, updateUnauthenticatedUserCart } = this.props;
     const { ORDER_VALUE, DELIVERY, TOTAL } = ORDER_TOTAL_ITEMS_LABELS;
     const price = this.getTotalCost();
     const orderTotalItems = [
@@ -32,7 +32,14 @@ class Cart extends Component {
       <Fragment>
         <Col md={7}>
           <div className="shopping-bag-items">
-            {cartProducts.map(product => <ProductsCart product={product} />)}
+            {cartProducts.map(product => (
+              <CartProductsComponent
+                product={product}
+                cartProducts={cartProducts}
+                isAuthenticated={isAuthenticated}
+                updateUnauthenticatedUserCart={updateUnauthenticatedUserCart}
+              />
+            ))}
           </div>
         </Col>
         <Col md={5}>
@@ -81,6 +88,8 @@ Cart.propTypes = {
     name: PropTypes.string,
     price: PropTypes.number,
   })),
+  isAuthenticated: PropTypes.bool.isRequired,
+  updateUnauthenticatedUserCart: PropTypes.func,
 };
 
 export default Cart;

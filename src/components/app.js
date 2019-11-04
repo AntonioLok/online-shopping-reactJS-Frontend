@@ -66,6 +66,7 @@ class App extends Component {
     const cartProps = {
       isAuthenticated,
       cartProducts: isAuthenticated ? cartState.data : unauthenticatedCartProducts,
+      updateUnauthenticatedUserCart: this.updateUnauthenticatedUserCart,
     };
 
     return (
@@ -86,7 +87,6 @@ class App extends Component {
                   <Product
                     {...props}
                     {...cartProps}
-                    updateUnauthenticatedUserCart={this.updateUnauthenticatedUserCart}
                   />
                 )}
             />
