@@ -8,9 +8,10 @@ class Button extends PureComponent {
       icon,
       type,
       caption,
+      ...props
     } = this.props;
     return (
-      <button type={type}>
+      <button type={type} {...props}>
         {icon && <i className="material-icons">{icon}</i>}
         <span className="btn-caption">{caption}</span>
       </button>

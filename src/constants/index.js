@@ -48,3 +48,5 @@ export const ORDER_TOTAL_ITEMS_LABELS = {
 };
 
 export const DELIVERY_PRICE = 10;
+
+export const SELECT_AMOUNT_OPTIONS = [1, 2, 3, 4, 5];
