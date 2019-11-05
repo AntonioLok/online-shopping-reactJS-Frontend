@@ -2,6 +2,7 @@
 import axios from 'axios';
 import tokenUtils from '../../utils/auth/token';
 import API_BASE_URL from '../../settings/index';
+import { getInitialState } from '../../utils';
 
 const apiRequestMiddleware = store => next => async (action) => {
   const { dispatch } = store;
@@ -11,7 +12,7 @@ const apiRequestMiddleware = store => next => async (action) => {
   }
 
   const {
-    SUCCESS, FAILURE, endpoint, method, data, authorization = false,
+    SUCCESS, FAILURE, PENDING, endpoint, method, data, isCollection, authorization = false,
   } = action.payload;
   const url = `${API_BASE_URL}/${endpoint}`;
 
@@ -22,6 +23,8 @@ const apiRequestMiddleware = store => next => async (action) => {
       method,
       data,
     };
+    const initialState = getInitialState(isCollection);
+    dispatch({ type: PENDING, payload: { ...initialState, isPending: true } });
 
     if (authorization) {
       const token = tokenUtils.get();
@@ -36,9 +39,9 @@ const apiRequestMiddleware = store => next => async (action) => {
     } else {
       response = await axios({ ...axiosRequestArguments });
     }
-    dispatch({ type: SUCCESS, payload: response.data });
+    dispatch({ type: SUCCESS, payload: { ...response.data, isPending: false } });
   } catch (err) {
-    dispatch({ type: FAILURE, payload: err.response.data });
+    dispatch({ type: FAILURE, payload: { ...err.response.data, isPending: false } });
   }
 };
 

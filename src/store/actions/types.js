@@ -1,5 +1,6 @@
 const asyncActionType = type => ({
   SUCCESS: `${type}_SUCCESS`,
+  PENDING: `${type}_PENDING`,
   FAILURE: `${type}_FAILURE`,
 });
 

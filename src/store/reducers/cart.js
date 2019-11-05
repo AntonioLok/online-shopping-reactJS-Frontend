@@ -4,8 +4,10 @@ import { getInitialState } from '../../utils';
 const cart = (state = getInitialState(true), action) => {
   switch (action.type) {
     case FETCH_CART.SUCCESS:
+    case FETCH_CART.PENDING:
     case FETCH_CART.FAILURE:
     case UPDATE_CART.SUCCESS:
+    case UPDATE_CART.PENDING:
     case UPDATE_CART.FAILURE:
       return action.payload;
     default:

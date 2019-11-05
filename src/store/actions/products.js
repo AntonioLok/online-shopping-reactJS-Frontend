@@ -6,6 +6,7 @@ const fetchProducts = (section, type) => ({
     ...FETCH_PRODUCTS,
     endpoint: `products/${section}/${type}`,
     method: 'GET',
+    isCollection: true,
   },
 });
 
