@@ -2,7 +2,7 @@
 S3_BUCKET1="antoniolok.com"
 S3_BUCKET2="www.antoniolok.com"
 
-if [[ $TRAVIS_BRANCH == master ]]; then
+if [[ $TRAVIS_BRANCH == test2 ]]; then
 
   echo "Deploying to the $S3_BUCKET bucket"
   npm run build

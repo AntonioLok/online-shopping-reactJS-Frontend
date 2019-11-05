@@ -7,6 +7,7 @@ const login = data => ({
     endpoint: 'users/login',
     method: 'POST',
     data,
+    isCollection: false,
   },
 });
 

@@ -6,6 +6,7 @@ const login = (state = getInitialState(), action) => {
     case LOGIN.SUCCESS:
       localStorage.setItem('OS_AUTH_TOKEN', action.payload.data);
       return action.payload;
+    case LOGIN.PENDING:
     case LOGIN.FAILURE:
       return action.payload;
     default:

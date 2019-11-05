@@ -48,6 +48,7 @@ class Product extends Component {
   }
 
   render() {
+    console.log(this.props);
     const { SELECT_INPUT } = FIELDS_TYPE;
     const { productState } = this.props;
     const product = productState.data;

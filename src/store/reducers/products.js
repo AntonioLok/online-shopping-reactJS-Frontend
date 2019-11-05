@@ -4,6 +4,7 @@ import { getInitialState } from '../../utils';
 const products = (state = getInitialState(true), action) => {
   switch (action.type) {
     case FETCH_PRODUCTS.SUCCESS:
+    case FETCH_PRODUCTS.PENDING:
     case FETCH_PRODUCTS.FAILURE:
       return action.payload;
     default:
