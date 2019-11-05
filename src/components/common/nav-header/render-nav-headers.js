@@ -27,6 +27,7 @@ class RenderNavHeaders extends Component {
 
   handleSelect(eventKey) {
     const { history, section } = this.props;
+    this.setState({ show: false });
     history.push(`/products/${section}/${eventKey}`);
   }
 
