@@ -78,6 +78,7 @@ CartProducts.propTypes = {
     img: PropTypes.string,
     name: PropTypes.string,
     price: PropTypes.number,
+    sizeAvailable: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   cartProducts: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string,
@@ -86,6 +87,7 @@ CartProducts.propTypes = {
     img: PropTypes.string,
     name: PropTypes.string,
     price: PropTypes.number,
+    sizeAvailable: PropTypes.arrayOf(PropTypes.string),
   })).isRequired,
   dispatchUpdateCart: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,

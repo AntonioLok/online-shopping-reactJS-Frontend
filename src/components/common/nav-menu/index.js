@@ -50,6 +50,7 @@ NavMenu.propTypes = {
     img: PropTypes.string,
     name: PropTypes.string,
     price: PropTypes.number,
+    sizeAvailable: PropTypes.arrayOf(PropTypes.string),
   })),
 };
 
