@@ -7,7 +7,11 @@
   button {
     color: $os-black;
     font-size: $font-size-lg;
-    width: 100px;
+    padding: 0 $padding-md-horizontal;
+
+    @media screen and (max-width: $small-screen-max-width) {
+      padding: 0 $padding-sm-horizontal;
+    }
   }
 
   .dropdown-menu {
