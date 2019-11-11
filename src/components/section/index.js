@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Row, Col } from 'react-bootstrap';
-import { SECTIONS } from '../../constants/index';
+import { TYPES } from '../../constants/index';
 import Cover from '../common/cover/index';
 
-const Home = (props) => {
-  const { history } = props;
+const Section = (props) => {
+  const { history, match: { params: { section } } } = props;
+
   const items = [];
-  SECTIONS.forEach(section => items.push({ caption: section, path: `/section/${section}` }));
+  TYPES[section].forEach(type => items.push({ caption: type, path: `/products/${section}/${type}` }));
   const coverProps = {
     history,
-    img: '/assets/images/homepage/homepage.jpg',
+    img: `/assets/images/section/${section}.jpg`,
     items,
   };
 
@@ -27,10 +28,15 @@ const Home = (props) => {
   );
 };
 
-Home.propTypes = {
+Section.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      section: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
 };
 
-export default Home;
+export default Section;
