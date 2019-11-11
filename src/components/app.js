@@ -43,9 +43,9 @@ class App extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     const { loginState, cartState } = this.props;
-    return !_.isEqual(loginState, nextProps.loginState)
-    || !_.isEqual(cartState, nextProps.cartState)
-    || !_.isEqual(this.state, nextState);
+    return (!_.isEqual(loginState, nextProps.loginState)
+    || (!_.isEqual(cartState, nextProps.cartState) && !nextProps.cartState.isPending)
+    || !_.isEqual(this.state, nextState));
   }
 
   componentDidUpdate(prevProps) {

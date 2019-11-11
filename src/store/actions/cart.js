@@ -7,6 +7,7 @@ const fetchCart = () => ({
     endpoint: 'carts',
     method: 'GET',
     authorization: true,
+    isCollection: true,
   },
 });
 
@@ -18,6 +19,7 @@ const updateCart = updatedProducts => ({
     method: 'POST',
     data: { updatedProducts },
     authorization: true,
+    isCollection: true,
   },
 });
 

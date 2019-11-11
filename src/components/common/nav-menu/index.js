@@ -11,7 +11,6 @@ class NavMenu extends PureComponent {
       home, register, login, cart,
     } = ROUTES;
     const { isAuthenticated, cartProducts } = this.props;
-
     const loginItems = (
       <Nav pullRight>
         <NavItem href={register}>Register</NavItem>
