@@ -41,7 +41,9 @@ class ProductList extends Component {
 }
 
 ProductList.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   products: PropTypes.array.isRequired,
 };
 

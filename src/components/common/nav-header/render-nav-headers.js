@@ -57,7 +57,9 @@ class RenderNavHeaders extends Component {
 
 RenderNavHeaders.propTypes = {
   section: PropTypes.string.isRequired,
-  history: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default RenderNavHeaders;

@@ -122,10 +122,28 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Product.propTypes = {
-  history: PropTypes.object.isRequired,
-  match: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
   dispatchFetchProduct: PropTypes.func.isRequired,
-  productState: PropTypes.object.isRequired,
+  productState: PropTypes.shape({
+    data: PropTypes.shape({
+      _id: PropTypes.string,
+      quantity: PropTypes.number,
+      size: PropTypes.string,
+      img: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      sizeAvailable: PropTypes.arrayOf(PropTypes.string),
+    }),
+    statusCode: PropTypes.number,
+    statusText: PropTypes.string,
+  }).isRequired,
   cartProducts: PropTypes.arrayOf(PropTypes.shape({
     _id: PropTypes.string,
     quantity: PropTypes.number,
@@ -133,6 +151,7 @@ Product.propTypes = {
     img: PropTypes.string,
     name: PropTypes.string,
     price: PropTypes.number,
+    sizeAvailable: PropTypes.arrayOf(PropTypes.string),
   })),
   isAuthenticated: PropTypes.bool.isRequired,
   updateUnauthenticatedUserCart: PropTypes.func,

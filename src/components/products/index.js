@@ -67,10 +67,28 @@ const mapDispatchToProps = dispatch => ({
 });
 
 Products.propTypes = {
-  match: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      section: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   dispatchfetchProducts: PropTypes.func.isRequired,
-  productsState: PropTypes.object.isRequired,
+  productsState: PropTypes.shape({
+    data: PropTypes.arrayOf(PropTypes.shape({
+      _id: PropTypes.string,
+      quantity: PropTypes.number,
+      size: PropTypes.string,
+      img: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      sizeAvailable: PropTypes.arrayOf(PropTypes.string),
+    })),
+    statusCode: PropTypes.number,
+    statusText: PropTypes.string,
+  }).isRequired,
 };
 
 export default connect(

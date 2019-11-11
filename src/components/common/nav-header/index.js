@@ -16,7 +16,9 @@ const NavHeader = (props) => {
 };
 
 NavHeader.propTypes = {
-  history: PropTypes.object.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default NavHeader;
