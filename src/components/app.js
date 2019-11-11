@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Router } from 'react-router';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -75,6 +75,13 @@ class App extends Component {
           <NavMenu {...cartProps} />
           <NavHeader history={history} />
           <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => (
+                <Redirect to="/home" />
+              )}
+            />
             <Route exact path={home} component={Home} />
             <Route exact path={products} component={Products} />
             <Route exact path={register} component={Register} />
