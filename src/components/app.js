@@ -7,6 +7,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import NavMenu from './common/nav-menu';
 import NavHeader from './common/nav-header';
+import Section from './section';
 import Products from './products';
 import Product from './product';
 import Register from './user/register';
@@ -21,7 +22,7 @@ import getIsAuthenticated from '../utils/auth/get-is-authenticated';
 
 const history = createHistory();
 const {
-  home, register, products, product, login, cart,
+  home, register, products, product, login, cart, section,
 } = ROUTES;
 class App extends Component {
   constructor() {
@@ -83,6 +84,7 @@ class App extends Component {
               )}
             />
             <Route exact path={home} component={Home} />
+            <Route exact path={section} component={Section} />
             <Route exact path={products} component={Products} />
             <Route exact path={register} component={Register} />
             <Route exact path={login} component={Login} />

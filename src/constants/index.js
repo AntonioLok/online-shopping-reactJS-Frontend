@@ -14,6 +14,7 @@ export const ROUTES = {
   products: '/products/:section/:type',
   product: '/product/:id',
   cart: '/cart',
+  section: '/section/:section',
 };
 
 export const HTTP_STATUS_CODE = {
