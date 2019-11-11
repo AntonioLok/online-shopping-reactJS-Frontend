@@ -7,6 +7,7 @@ const register = data => ({
     endpoint: 'users/register',
     method: 'POST',
     data,
+    isCollection: false,
   },
 });
 

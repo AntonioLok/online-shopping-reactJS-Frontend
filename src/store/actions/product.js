@@ -6,6 +6,7 @@ const fetchProduct = id => ({
     ...FETCH_PRODUCT,
     endpoint: `products/${id}`,
     method: 'GET',
+    isCollection: false,
   },
 });
 
