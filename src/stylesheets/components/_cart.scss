@@ -1,4 +1,5 @@
-$cart-product-image-height: 240px;
+$cart-product-image-height-large-screen: 230px;
+$cart-product-image-height-small-screen: 200px;
 $delete-button-height: 24px;
 
 .os--cart {
@@ -17,7 +18,11 @@ $delete-button-height: 24px;
             margin-bottom: $margin-md-vertical;
 
            > img {
-                @include shape (30%, $cart-product-image-height);
+                @include shape (30%, $cart-product-image-height-large-screen);
+
+                @media screen and (max-width: $small-screen-max-width) {
+                    height: $cart-product-image-height-small-screen;
+                }
             }
 
             > .info {
@@ -25,15 +30,23 @@ $delete-button-height: 24px;
                 width: 70%;
 
                 > .title-label {
-                    font-size: $font-size-xl;
+                    font-size: $font-size-lg;
                     font-weight: $font-weight-xl;
                     margin-bottom: $margin-sm-vertical;
+
+                    @media screen and (max-width: $small-screen-max-width) {
+                        font-size: $font-size-md;
+                    }
                 }
 
                 > .total-cost-label {
                     font-size: $font-size-lg;
                     font-weight: $font-weight-lg;
-                    margin-bottom: $margin-md-vertical
+                    margin-bottom: $margin-md-vertical;
+
+                    @media screen and (max-width: $small-screen-max-width) {
+                        font-size: $font-size-md;
+                    }
                 }
 
                 > .description-label {
@@ -53,6 +66,7 @@ $delete-button-height: 24px;
 
     .shopping-bag-total {
         border: $os-grey solid 1px;
+        margin: $margin-xxl-vertical 0;
 
         .section {
             border-bottom: $os-grey solid 1px;
