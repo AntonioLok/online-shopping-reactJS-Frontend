@@ -36,11 +36,11 @@ class Product extends Component {
 
     if (isAuthenticated) {
       dispatchUpdateCart(
-        getUpdatedCartProducts(cartProducts, product, fields.selectSize, fields.selectAmount), true,
+        getUpdatedCartProducts(cartProducts, product, fields.selectSize, fields.selectAmount),
       );
     } else {
       const unauthenticatedUpdatedCartProducts = getUpdatedCartProducts(
-        getUnauthenticatedCartProducts(), product, fields.selectSize, fields.selectAmount, true,
+        getUnauthenticatedCartProducts(), product, fields.selectSize, fields.selectAmount,
       );
       localStorage.setItem('OS_UNAUTHENTICATED_USER_CART', JSON.stringify((unauthenticatedUpdatedCartProducts)));
       updateUnauthenticatedUserCart(unauthenticatedUpdatedCartProducts);

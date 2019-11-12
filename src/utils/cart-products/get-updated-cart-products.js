@@ -1,4 +1,4 @@
-const getUpdatedCartProducts = (cartProducts, product, size, amount, increaseAmount = false) => {
+const getUpdatedCartProducts = (cartProducts, product, size, amount) => {
   const { name, price, img } = product;
   let updatedCartProducts = cartProducts.slice(0);
   const productAlreadyAddedIndex = updatedCartProducts.findIndex(
@@ -11,17 +11,10 @@ const getUpdatedCartProducts = (cartProducts, product, size, amount, increaseAmo
 
   if (productAlreadyAddedIndex !== -1) {
     const updatedProduct = updatedCartProducts[productAlreadyAddedIndex];
-    if (increaseAmount) {
-      updatedCartProducts[productAlreadyAddedIndex] = {
-        ...updatedProduct,
-        quantity: updatedProduct.quantity + Number(amount),
-      };
-    } else {
-      updatedCartProducts[productAlreadyAddedIndex] = {
-        ...updatedProduct,
-        quantity: Number(amount),
-      };
-    }
+    updatedCartProducts[productAlreadyAddedIndex] = {
+      ...updatedProduct,
+      quantity: Number(amount),
+    };
   } else {
     updatedCartProducts = updatedCartProducts.concat(
       [{
